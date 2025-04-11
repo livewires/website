@@ -124,6 +124,23 @@ He lives in York with his wife Eliza and their 10 stringed instruments, three dr
 
 </div>
 </div>
+
+
+<div>
+<div class="person-headshot">
+  <img src="/assets/photo/david.jpg">
+  <h2>David</h2>
+</div>
+<div class="person-bio">
+
+David is a software engineer helping to make the internet safer through AI. During LiveWires, you can expect to find him either playing or explaining how to play a game.
+
+He lives in Birmingham with his wife Rosie. When he is not at a computer, he spends most of his remaining time cooking or rehearsing for his next amateur theatre production.
+
+</div>
+</div>
+
+
 </div>
 
 [See what's involved in getting involved »](/helping/)
@@ -137,6 +154,6 @@ LiveWires bookings are managed by [Scripture Union](https://events.scriptureunio
 
 <a class="cta" href="https://events.scriptureunion.org.uk/event.php?id=1187" target="blank" rel="noopener" id="book-now">Bookings full for 2025</a>
 
-Still have questions? Get in touch! Email Joel &amp; Roger at <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#108;&#105;&#118;&#101;&#119;&#105;&#114;&#101;&#115;&#64;&#115;&#99;&#114;&#105;&#112;&#116;&#117;&#114;&#101;&#117;&#110;&#105;&#111;&#110;&#46;&#111;&#114;&#103;&#46;&#117;&#107;">&#108;&#105;&#118;&#101;&#119;&#105;&#114;&#101;&#115;&#64;&#115;&#99;&#114;&#105;&#112;&#116;&#117;&#114;&#101;&#117;&#110;&#105;&#111;&#110;&#46;&#111;&#114;&#103;&#46;&#117;&#107;</a>,
+Still have questions? Get in touch! Email the team at <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#108;&#105;&#118;&#101;&#119;&#105;&#114;&#101;&#115;&#64;&#115;&#99;&#114;&#105;&#112;&#116;&#117;&#114;&#101;&#117;&#110;&#105;&#111;&#110;&#46;&#111;&#114;&#103;&#46;&#117;&#107;">&#108;&#105;&#118;&#101;&#119;&#105;&#114;&#101;&#115;&#64;&#115;&#99;&#114;&#105;&#112;&#116;&#117;&#114;&#101;&#117;&#110;&#105;&#111;&#110;&#46;&#111;&#114;&#103;&#46;&#117;&#107;</a>,
 or give them a call on [020 3397 1111](tel:02033971111).
 

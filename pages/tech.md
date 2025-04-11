@@ -99,7 +99,7 @@ electronics_projects:
     name: "Oscilloscope"
     long: true
     description: "Have you ever wondered what is happening in an electronic circuit? Now is your chance to find out. Build this little PC powered oscilloscope and you can look at signals to your heart's content. This uses a ready made circuit board and has a reasonable number of components. All the software you need is provided as well."
-    cost: "~£30-£35"
+    cost: "~£35-£40"
     electrical: advanced
     mechanical: medium
 
