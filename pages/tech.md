@@ -38,13 +38,6 @@ electronics_projects:
     electrical: advanced
     mechanical: medium
 
-  dual-dice:
-    name: "Dual Dice"
-    description: "With a press of a button, this dual dice will give you a roll! LEDs light to show your number."
-    cost: "~£10-£15"
-    electrical: medium
-    mechanical: easy
-
   escape-robot:
     name: "Escape Robot"
     description: "Build a robot that will find its way out of a maze using sensors and its microprocessor."
@@ -192,7 +185,7 @@ Work with others to record, edit, and master a podcast or song with guidance and
 
 ## Video Production <a id="video"></a>
 
-Shoot and edit a short film or trailer, from storyboarding through to post-production. This is a group activity. If you've done this before, why not choose Advanced Video Production, where you'll focus in on some of the more technical aspects of recording video.
+Shoot and edit a short film or trailer, from storyboarding through to post-production. If you've done this before, why not choose Advanced Video Production, where you'll focus in on some of the more technical aspects of recording video. This is a group activity.
 
 
 </div>
