@@ -6,7 +6,7 @@ electronics_projects:
   macro-pad:
     name: "USB Macro Pad"
     description: "Make your own customisable, programmable 8-key mini keyboard, complete with volume control. It connects to your computer over USB and has 8 mechanical keyboard switches that you can program to do whatever you want, plus a screen, rotary encoder and LEDs!"
-    cost: "~£20-£25"
+    cost: "~£25-£30"
     electrical: medium
     mechanical: easy
 
@@ -27,7 +27,7 @@ electronics_projects:
   3d-led-cube:
     name: "3D LED Cube"
     description: "Create a 3D light cube to display a changing set of patterns. Software is provided to program lighting sequences.  This circuit uses a ready made circuit board, but you will need to have experience and a steady hand to be able to solder the tricky cube joints."
-    cost: "~£20-£25"
+    cost: "~£25-30"
     electrical: medium
     mechanical: advanced
 
@@ -37,13 +37,6 @@ electronics_projects:
     cost: "~£35-£40"
     electrical: advanced
     mechanical: medium
-
-  dual-dice:
-    name: "Dual Dice"
-    description: "With a press of a button, this dual dice will give you a roll! LEDs light to show your number."
-    cost: "~£10-£15"
-    electrical: medium
-    mechanical: easy
 
   escape-robot:
     name: "Escape Robot"
@@ -62,14 +55,14 @@ electronics_projects:
   parrot:
     name: "Parrot"
     description: "This little creature repeats your words… but in it's own voice! Complete with microphone, loudspeaker and case."
-    cost: "~£10-£15"
+    cost: "~£15-£20"
     electrical: medium
     mechanical: medium
 
   light-beam-alarm:
     name: "Light Beam Alarm"
     description: "Contained in a small and easily concealed box, when an intruder passes by it emits a piercing whistle letting you know they’re there. "
-    cost: "~£10-£15"
+    cost: "~£15-£20"
     electrical: medium
     mechanical: medium
 
@@ -83,17 +76,9 @@ electronics_projects:
   electronic-light-bug:
     name: "Electronic Light Bug"
     description: "This little critter is looking for the light! Driven by two miniature motors it can direct itself to where it detects the most light. This project uses a ready-made circuit board making it ideal if you're new to electronics."
-    cost: "~£10-£15"
+    cost: "~£15-£20"
     electrical: easy
     mechanical: easy
-
-  bike-alarm:
-    name: "Bike alarm"
-    long: true
-    description: "A very loud deterrent, with vibration and tilt sensors, a key switch, and optional tamper alarm."
-    cost: "~£25-£30"
-    electrical: medium
-    mechanical: medium
 
   oscilloscope:
     name: "Oscilloscope"
@@ -107,7 +92,7 @@ electronics_projects:
     name: "Guitar Headphones Amp"
     long: true
     description: "Rock in the comfort of your own headphones with this battery powered box. It's a DI box too, so you can plug into a mixer if you want everyone to hear."
-    cost: "~£35-£40"
+    cost: "~£40-£45"
     electrical: advanced
     mechanical: advanced
 
@@ -115,7 +100,7 @@ electronics_projects:
     name: "Theremin"
     long: true
     description: "The only instrument you can play without touching it! Create weird and wonderful music by waving your hands!"
-    cost: "~£15-£20"
+    cost: "~£20-£25"
     electrical: medium
     mechanical: medium
 
@@ -200,7 +185,7 @@ Work with others to record, edit, and master a podcast or song with guidance and
 
 ## Video Production <a id="video"></a>
 
-Shoot and edit a short film or trailer, from storyboarding through to post-production. This is a group activity.
+Shoot and edit a short film or trailer, from storyboarding through to post-production. If you've done this before, why not choose Advanced Video Production, where you'll focus in on some of the more technical aspects of recording video. This is a group activity.
 
 
 </div>
