@@ -9,10 +9,10 @@ og_description: "Start your summer with a week learning about Jesus and technolo
 <h1 class="page-title">Learn more about Jesus and technology this summer.</h1>
 
 * Technical activity week for 12–17s
-* 10th - 17th August 2025
+* 9th - 16th August 2026
 * Salisbury, UK
 
-<a class="cta" href="https://events.scriptureunion.org.uk/event.php?id=1187" target="blank" rel="noopener" id="book-now">Bookings full for 2025!</a>
+<a class="cta" href="https://events.scriptureunion.org.uk/event.php?id=1225" target="blank" rel="noopener" id="book-now">Book now!</a>
 
 <div class="columns columns-reverse">
 <img src="/assets/photo/2022/electronics.jpg">
@@ -89,7 +89,7 @@ LiveWires is held in the grounds of a boarding school in Salisbury. The school h
 
 We do most of our technical activites in the school's classrooms and sleep in the dorms. There are usually about 5 or 6 young people in each dorm. Larger activities are held in the school hall or the dining hall, where we also enjoy the delicious meals.
 
-The site is easily accessible by car, or if public transport is preferred we can collect from Salisbury train or coach stations. Arrival time is from 4:30PM, but if you arrive early there's plenty to see in the city centre.
+The site is easily accessible by car, or if public transport is preferred we can collect from Salisbury train or coach stations. Arrival time is late afternoon, but if you arrive early there's plenty to see in the city centre.
 
 
 # Meet the team
@@ -98,19 +98,7 @@ LiveWires is run by a team of about 30 volunteers,
 including the overall leaders Joel & Roger.
 
 <div class="columns">
-<div>
-<div class="person-headshot">
-  <img src="/assets/photo/roger.jpg">
-  <h2>Roger</h2>
-</div>
-<div class="person-bio">
 
-Roger is an electronic engineer specialising in aircraft ejection seats. During LiveWires, you’re likely to find him peering at circuit boards and diagrams.
-
-He lives in Uxbridge with his wife Nicola and daughter Rachel. In his spare time he’s a keen photographer!
-
-</div>
-</div>
 <div>
 <div class="person-headshot">
   <img src="/assets/photo/joel.jpg">
@@ -152,7 +140,7 @@ He lives in Birmingham with his wife Rosie. When he is not at a computer, he spe
 
 LiveWires bookings are managed by [Scripture Union](https://events.scriptureunion.org.uk/). SU have been running summer holidays for over a hundred years.
 
-<a class="cta" href="https://events.scriptureunion.org.uk/event.php?id=1187" target="blank" rel="noopener" id="book-now">Bookings full for 2025</a>
+<a class="cta" href="https://events.scriptureunion.org.uk/event.php?id=1225" target="blank" rel="noopener" id="book-now">Book here</a>
 
 Still have questions? Get in touch! Email the team at <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#108;&#105;&#118;&#101;&#119;&#105;&#114;&#101;&#115;&#64;&#115;&#99;&#114;&#105;&#112;&#116;&#117;&#114;&#101;&#117;&#110;&#105;&#111;&#110;&#46;&#111;&#114;&#103;&#46;&#117;&#107;">&#108;&#105;&#118;&#101;&#119;&#105;&#114;&#101;&#115;&#64;&#115;&#99;&#114;&#105;&#112;&#116;&#117;&#114;&#101;&#117;&#110;&#105;&#111;&#110;&#46;&#111;&#114;&#103;&#46;&#117;&#107;</a>,
 or give them a call on [020 3397 1111](tel:02033971111).
