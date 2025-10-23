@@ -95,7 +95,7 @@ The site is easily accessible by car, or if public transport is preferred we can
 # Meet the team
 
 LiveWires is run by a team of about 30 volunteers,
-including the overall leaders Joel & Roger.
+including the overall leaders Joel & David.
 
 <div class="columns">
 
