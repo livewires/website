@@ -3,6 +3,13 @@ title: "Technical Activities on LiveWires"
 template: "tech.html"
 
 electronics_projects:
+  synth:
+    name: "Analogue Synth"
+    description: "New for 2026: get your chip tunes on! Create an analogue synthesiser, complete with a 1-octave capacitive keyboard, 8 knobs to shape the sound using analogue filters, a 5-octave output range, and unlimited opportunity for creativity."
+    cost: "~£30-£35"
+    electrical: medium
+    mechanical: easy
+
   macro-pad:
     name: "USB Macro Pad"
     description: "Make your own customisable, programmable 8-key mini keyboard, complete with volume control. It connects to your computer over USB and has 8 mechanical keyboard switches that you can program to do whatever you want, plus a screen, rotary encoder and LEDs!"
