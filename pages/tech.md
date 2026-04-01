@@ -4,7 +4,7 @@ template: "tech.html"
 
 electronics_projects:
   synth:
-    name:"Analogue Synth"
+    name: "Analogue Synth"
     description: "New for 2026: get your chip tunes on! Create an analogue synthesiser, complete with a 1-octave capacitive keyboard, 8 knobs to shape the sound using analogue filters, a 5-octave output range, and unlimited opportunity for creativity."
     cost: "~£30-£35"
     electrical: medium
