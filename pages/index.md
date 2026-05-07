@@ -6,7 +6,11 @@ description: "LiveWires is a technical activity week for 12–17s. Spend a week 
 og_description: "Start your summer with a week learning about Jesus and technology."
 ---
 
-<h1 class="page-title">Spend a week building tech, making friends and exploring life's big questions.</h1>
+<div class="hero">
+
+<h1 class="page-title">Create.<br>Connect.<br>Explore.</h1>
+
+Spend a week building tech, making friends and exploring life's big questions
 
 * For ages 12 to 17
 * 9th - 16th August 2026
@@ -14,10 +18,13 @@ og_description: "Start your summer with a week learning about Jesus and technolo
 
 <a class="cta" href="https://events.scriptureunion.org.uk/event.php?id=1225" target="blank" rel="noopener" id="book-now">Book now!</a>
 
-## A week where you can just be yourself
+</div>
 
-Many people come not knowing anyone. You’ll quickly find your place, whether you’re into coding, music, robotics, video, or just figuring things out. LiveWires is designed so you don’t need to “fit in” before you arrive.
+## Create, connect and explore
 
+LiveWires is a week-long residential camp for 12–17s where technology, community and Christian faith come together. You’ll spend the week building real projects — coding, electronics, music production, video and more — using tools and techniques professionals actually use. 
+
+There’s space to form genuine lifelong friendships, take on ridiculous challenges, and explore life’s bigger questions alongside people who take faith seriously. No experience required. Most people arrive alone and leave already planning how to come back.
 
 <div class="columns columns-reverse">
 <img src="/assets/photo/2022/electronics.jpg">
@@ -71,8 +78,8 @@ We'll teach you everything you need, and you'll come away with something cool to
 * **3D Modelling:** Design characters, scenes and objects using Blender, the same software used for games, animation and VFX.
 * **Coding:** Build games, apps and websites with JavaScript, HTML and CSS. Recreate your favourite ideas — or invent something gloriously chaotic.
 * **Electronics:** Solder, wire and build your own gadgets, from LED cubes and arcade games to robots and macro keyboards.
-* **Sound Production** Record music or podcasts, experiment with studio gear, and learn how real audio production works.
-* **Video Production** Shoot and edit films, trailers and sketches from first idea through to final edit.
+* **Sound Production:** Record music or podcasts, experiment with studio gear, and learn how real audio production works.
+* **Video Production:** Shoot and edit films, trailers and sketches from first idea through to final edit.
 
 [See everything you can do »](/tech/)
 

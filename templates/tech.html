@@ -9,42 +9,15 @@
 
   {% for id in electronics_projects -%}
   {%- with p = electronics_projects[id] -%}
-  {%- if not p.long -%}
-  <div id="electronics-project-{{ id }}">
+  <div id="electronics-project-{{ id }}" class="electronics-project">
     <div>
       <h3>{{ p.name }}</h3>
       <p class="activity-stats">
-      {{ p.cost }} • electrical:&nbsp;{{ p.electrical }} • mechanical:&nbsp;{{ p.mechanical }}
+        <span class="badge">{{ p.cost }} |  ⚡️&nbsp;{{ p.electrical }} | 🪛&nbsp;{{ p.mechanical }}
       </span>
       <p>{{ p.description }}</p>
     </div>
   </div>
-  {%- endif -%}
-  {%- endwith -%}
-  {%- endfor %}
-
-</div>
-<div class="summary">
-
-  <h1>Long electronics projects</h1>
-  <p>There are also some longer electronics projects:
-
-</div>
-<div class="activities">
-
-  {% for id in electronics_projects -%}
-  {%- with p = electronics_projects[id] -%}
-  {%- if p.long -%}
-  <div id="electronics-project-{{ id }}">
-    <div>
-      <h3>{{ p.name }}</h3>
-      <p class="activity-stats">
-      {{ p.cost }} • electrical:&nbsp;{{ p.electrical }} • mechanical:&nbsp;{{ p.mechanical }}
-      </span>
-      <p>{{ p.description }}</p>
-    </div>
-  </div>
-  {%- endif -%}
   {%- endwith -%}
   {%- endfor %}
 
@@ -64,9 +37,5 @@
 
 </div>
 -->
-
-<p>
-  <a class="cta" href="/#book">Book Now</a>
-</p>
 
 {% endblock %}

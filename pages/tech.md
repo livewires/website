@@ -165,7 +165,9 @@ Design characters, objects, scenes or entire worlds using  [Blender](https://www
 
 ## Sound Production <a id="recording"></a>
 
-Record music, produce a podcast, add sound effects, mix tracks and experiment with studio gear. This is a group activity.
+Record music, produce a podcast, add sound effects, mix tracks and experiment with studio gear.
+
+<span class="badge">Group activity</span>
 
 </div>
 </div>
@@ -180,8 +182,7 @@ Shoot and edit a short film, trailer or sketch, from storyboarding through to fi
 
 Already know the basics? Advanced Video Production dives deeper into cameras, lighting, audio and post-production.
 
-This is a group activity.
-
+<span class="badge">Group activity</span>
 
 </div>
 </div>
@@ -202,6 +203,8 @@ Every electronics project involves some soldering, and we’ll teach you everyth
 
 Some projects also include building circuit boards, cases and mechanical parts from scratch, but don’t worry: we’ll guide you through it!
 
+There's a small extra cost for these activities, which we’ll tell you beforehand.
+
 </div>
 </div>
 
@@ -209,9 +212,7 @@ Some projects also include building circuit boards, cases and mechanical parts f
 <img src="/assets/photo/2022/electronics.jpg">
 <div>
 
-There's a small extra cost for these activities, which we’ll tell you beforehand.
-
-Each project has two difficulty ratings: the first for the electrical work (soldering and wiring) and the second for mechanical building (PCB, drilling, filing, nuts and bolts etc.).
+Each project has two difficulty ratings: the first for the ⚡️ electrical work (soldering and wiring) and the second for 🪛 mechanical building (PCB, drilling, filing, nuts and bolts etc.).
 
 Whether you’re into music tech, robotics, retro gaming, LEDs, or strange little machines, there’s probably a project here for you.
 
