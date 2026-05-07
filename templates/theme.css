@@ -108,7 +108,7 @@ h1.page-title {
   margin-top: 0;
 }
 h2 {
-  margin: 1rem 0 0.5rem;
+  margin: 2rem 0 0.5rem;
   font-size: 1.5rem;
   line-height: 1.333;
 }
@@ -177,7 +177,7 @@ li:before {
 }
 
 strong {
-  font-weight: 600;
+  font-weight: 900;
   color: var(--accent);
 }
 
