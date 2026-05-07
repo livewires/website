@@ -8,95 +8,119 @@ og_description: "Start your summer with a week learning about Jesus and technolo
 
 # Helping at LiveWires
 
-This page answers some questions for people thinking about joining us as team members. If you want to know what's on offer at LiveWires have a look at the homepage.
+Thinking about joining the LiveWires team? This page gives you a feel for what it’s like and what’s involved.
 
-### What's the aim of LiveWires?
+If you’re looking for what young people do instead, head to the homepage.
 
+
+## Why LiveWires exists
+
+LiveWires is about creating a welcoming Christian community where young people can:
 
 * We aim to build a welcoming Christian **community**,
 * so that the young people will be **equipped** beyond LiveWires.
 * As a team we try to **model** Christ in all that we do.
 
-### What might I get out of joining the team?
+As a team, we’re there to serve them well and reflect Christ through how we lead, teach and care.
 
-We asked the team what the best thing is about helping out at LiveWires. Here's a few of their answers:
 
-> Getting to know more of the YP was awesome
+## Would I fit in at LiveWires?
 
-> Being trained in how to lead a small group discussion and Bible study
+You might enjoy helping at LiveWires if you like working with young people, enjoy being part of a Jesus-centred team, and are happy to learn as you go. An enthusiasm for tech is also helpful, but by no means necessary!
 
-> The support and closeness of the team
+You’ll help young people build tech projects, lead small group conversations, take part in team life, and be part of a week that mixes creativity, technology, community and faith.
 
-> Praying with YP at Communion
+## What other team say
 
-> Getting to know the YP and being able to witness their journeys over the week
+We asked returning team members what stands out most:
 
-> I learnt more about serving and myself through being challenged and stretched during the week
-
+> Getting to know the young people and seeing their week unfold
+> The closeness and support of the team
+> Being trained and growing in confidence as a leader
 > Laughing a lot
+> Praying with young people and sharing meaningful moments
+> Being stretched and challenged in a good way
 
-### I'm not a teacher, how can I teach a technical skill?
+Most people say the same thing: it’s hard work, but one of the best weeks of the year.
 
-There aren't many school teachers on the LiveWires team, so you wouldn't be alone! You will normally be responsible for up to 3 or 4 young people (YP) at a time (that is, probably up to about 8 people in a group, with two team members). During their time in a technical group, the young people will normally attempt to complete a project of some kind, for example, write a computer game, produce a short video, or record a song in the recording studio.
+---
 
-If you already have skills in a particular area, this will normally decide the approximate area in which you will be asked to help, but we'll make sure to discuss the options with you before the camp.
+# Getting involved
 
-### I've never really worked with young people before. What help will I get?
+## Do I need to be a teacher?
 
-Around a month before Livewires starts, we have a planning weekend where training is given on a number of subjects, as well as having a chance to meet the rest of the team and plan for the activities that will be taking place.
+No — most of the team aren’t teachers. You’ll work in a small team supporting 4–8 young people as they build projects like games, videos, music or electronics.
 
-For every activity on the holiday team members are in pairs or larger groups, so you should never have to cope alone. Other members of the team are always happy to give advice, ideas, and share resources.
+If you have technical skills, great. If not, there’s plenty of non-tech stuff to get involved in.
 
-### I'm only 18 and still at school. Can I still help?
 
-Of course! No-one joins the team just because they've been on the holiday before; rather we see what sort of things people are doing, their current interests and skills, their church situation, and then all pray about it.
+## I’ve never worked with young people before
 
-We make sure that you're leading the younger kids on the camp, to help you into a leadership role. But you get just at much responsibility as any other leader: you'll be full team in every respect and you get to do the same as everyone else.
+That’s completely fine. We run a training and planning weekend before the week starts, and you’ll always be part of a team with experienced leaders around you.
 
-We also aim to provide some training and teaching to help you learn what leadership in a Christ-like manner looks like.
 
-### Where does all the equipment come from?
+## What time commitment is needed?
 
-Almost all of the technical equipment is provided by current or past team members, or their friends, colleagues or workplaces. Many team members generously make their own equipment available to the young people. The equipment is kept permanently in the classrooms of the school, with the young people having supervised access.
+A planning weekend in July, plus the LiveWires week. We also have optional catch ups occasionally through the year.
 
-Scripture Union has an insurance policy to cover the safety of equipment loaned to the holiday. Do talk to one of the co-leaders if you want more details about this.
 
-### Where do I sleep?
+## What does it cost?
 
-Since the holiday is based in a boarding school, most of the accommodation is dormitory based. Team members share dormitories with a few other team members. The school supplies beds to sleep on but you will need to bring your own pillows, pillowcases, sheets and duvet / sleeping bag. 
+Team members are asked to contribute towards their food and accommodation costs.
 
-### What about food?
+For 2026 this is £339, but please don’t let cost be a barrier — bursaries and support are available.
 
-The main meals are breakfast, lunch and dinner, which we all eat together in the large dining room of the school. There is plenty of food, and it is delicious. Drinks and sometimes biscuits/cakes are served mid morning, mid afternoon and just before the young people go to bed.
+Get in touch if you’d like to talk about it.
 
-Team members are free to make drinks for themselves whenever they have the time, and there are additional late night snacks for anyone who feels hungry. If you still need more to eat, there is a tuck shop for team and young people to buy sweets during the mid morning break. If you have special dietary needs, these can be accommodated.
 
-### What are the spiritual sessions like?
+## How do I join?
 
-There are three spiritual sessions on each normal day. The morning session is similar to a youth service, with worship, a talk, and a game or two. Straight after dinner, small groups are held where the YP open the bible and discover it for themselves. Then afterwards, we have an open time of worship and prayer. 
+Start by getting in touch with us.
 
-During these, you'll have the opportunity to help with music, reading, testimony, prayers etc. as well as helping to lead and guide the small group discussions.
+We’ll have a conversation first, then guide you through the application process, which includes references and a DBS check.
 
-### What would I be doing on a typical day?
+We’re happy to talk it through before you commit.
 
-To get a feel for a LiveWires day have a look at the [timetable](/day/). In addition to the days activities we have a team meeting in the morning, and a chance to chill out and socialise after the YP have gone to bed.
 
-### Who is in charge? Who leads the team?
+# Practicalities
 
-David Charter, Joel Fergusson and Roger Pickard are the overall leaders of the holiday, and answer to Scripture Union for all that goes on during the holiday. They share the work of planning the holiday with a small group of team members, known as the Planning Team.
+## What does a typical day look like?
 
-### How much time is involved throughout the year?
+Have a look at the [day overview](/day/), but broadly:
 
-Starting in early July, there is the planning weekend which runs from Friday evening to Sunday afternoon. The holiday itself is eight days in mid August, then there optional reunions for YP and team throughout the year. Of course, there is also time spent praying, keeping in touch with the YP, etc.
+* **Mornings**: worship, teaching and small groups
+* **Daytime**: technical activities and projects
+* **Afternoons**: free time and relaxed activities
+* **Evenings**: group time, discussion, games and prayer
 
-### What costs are involved?
 
-To keep the cost reasonable for the guests, we ask the team to contribute their food and board costs. For 2025 the cost will be £339, but please don't let this get in the way of helping out. There are discounts and bursaries available, so get in touch with the co-leaders to find out more.
+## What about sleeping and eating?
 
-### How do I join?
+Team members stay in shared dorms and classrooms on-site in Salisbury.
 
-You should get in touch with us in the first instance. SU have a thorough screening and application process for new team members: the holiday leaders will generally want to chat with you first, then you'll need to fill in an application form, provide references (one of whom will need to be your current church minister), and pass a Disclosure and Barring Scheme (DBS) check. You can contact the co-leaders at <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#108;&#105;&#118;&#101;&#119;&#105;&#114;&#101;&#115;&#64;&#115;&#99;&#114;&#105;&#112;&#116;&#117;&#114;&#101;&#117;&#110;&#105;&#111;&#110;&#46;&#111;&#114;&#103;&#46;&#117;&#107;">&#108;&#105;&#118;&#101;&#119;&#105;&#114;&#101;&#115;&#64;&#115;&#99;&#114;&#105;&#112;&#116;&#117;&#114;&#101;&#117;&#110;&#105;&#111;&#110;&#46;&#111;&#114;&#103;&#46;&#117;&#107;</a>
+All meals are provided in the dining hall, with snacks and drinks throughout the day.
 
-### Want to know more about volunteering?
 
-Have a look at the Scripture Union [volunteering pages](https://volunteer.scriptureunion.org.uk/overview.php)
+## What are the spiritual parts like?
+
+Each day includes times for worship, Bible teaching and small group discussion. There are opportunities to get involved: we want to use the skills and gifts God has given to you.
+
+
+## Where does everything come from?
+
+Most of the equipment is provided by the LiveWires team and supporters, including past volunteers and friends of the event.
+
+Everything is set up before the week begins and used safely under supervision.
+
+
+## Who runs LiveWires?
+
+LiveWires is led by Joel Fergusson and David Charter, alongside a wider planning team, in partnership with Scripture Union.
+
+
+## Want to know more?
+
+You can also read more about volunteering with Scripture Union here:
+
+[volunteering pages](https://volunteer.scriptureunion.org.uk/overview.php)
+

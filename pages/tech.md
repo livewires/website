@@ -5,84 +5,77 @@ template: "tech.html"
 electronics_projects:
   synth:
     name: "Analogue Synth"
-    description: "New for 2026: get your chip tunes on! Create an analogue synthesiser, complete with a 1-octave capacitive keyboard, 8 knobs to shape the sound using analogue filters, a 5-octave output range, and unlimited opportunity for creativity."
+    description: "New for 2026: build your own retro-style analogue synth and create bleeps, drones and full-on chiptune chaos. Features a touch-sensitive 1-octave keyboard, 8 sound-shaping knobs, analogue filters and a huge 5-octave range."
     cost: "~£30-£35"
-    electrical: medium
+    electrical: advanced
     mechanical: easy
 
   macro-pad:
     name: "USB Macro Pad"
-    description: "Make your own customisable, programmable 8-key mini keyboard, complete with volume control. It connects to your computer over USB and has 8 mechanical keyboard switches that you can program to do whatever you want, plus a screen, rotary encoder and LEDs!"
+    description: "Build your own programmable mini-keyboard with mechanical switches, LEDs, a screen and a chunky volume knob. Launch apps, mute Discord instantly, or create shortcuts for games and editing."
     cost: "~£25-£30"
     electrical: medium
     mechanical: easy
 
   digital-echo-chamber:
     name: "Digital Echo Chamber"
-    description: "This circuit takes input from the built-in microphone, or from an external input, and allows you to add echo and feedback to your voice, or music.  This circuit uses a ready make circuit board."
+    description: "Turn your voice into echoey sci-fi nonsense. Plug in a microphone or music source and experiment with delay, feedback and weird sound effects. Great for music, sound design, or just making strange noises."
     cost: "~£15-£20"
     electrical: medium
     mechanical: easy
 
   guitar-pedal:
     name: "Guitar Pedal"
-    description: "Are you a budding guitarist and would like to build your own distortion pedal? With this project, you can!"
+    description: "Build your own distortion pedal and give your guitar some extra crunch. Perfect if you like music or electronics. Even better if you like both!"
     cost: "~£15-£20"
     electrical: medium
     mechanical: medium
 
   3d-led-cube:
     name: "3D LED Cube"
-    description: "Create a 3D light cube to display a changing set of patterns. Software is provided to program lighting sequences.  This circuit uses a ready made circuit board, but you will need to have experience and a steady hand to be able to solder the tricky cube joints."
+    description: "Build a glowing 3D cube packed with programmable LEDs and create your own animated light patterns. Looks incredible in the dark, but requires patience and careful soldering for the cube structure."
     cost: "~£25-30"
     electrical: medium
     mechanical: advanced
 
-  computer-message-display:
-    name: "Computer Message Display"
-    description: "Create a second display for your computer to show drive space information, incoming emails, or display your Twitter feed. Drivers and software provided for Windows XP or greater, and a DLL is provided if you want to program it for other purposes. This uses a ready made circuit board, but you will need to have good soldering skills due to the complexity of some of the joints."
-    cost: "~£35-£40"
-    electrical: advanced
-    mechanical: medium
-
   escape-robot:
     name: "Escape Robot"
-    description: "Build a robot that will find its way out of a maze using sensors and its microprocessor."
+    description: "Build a tiny autonomous robot that escapes mazes using sensors and code. Basically: robot brain + problem solving + chaos."
     cost: "~£25-£30"
     electrical: medium
     mechanical: advanced
 
   audio-analyser:
     name: "Audio Analyser"
-    description: "Build this little project and you can see what your musical instruments or recording are doing: with a graphic display you can see a real-time spectrum of your audio."
+    description: "Visualise music in real time with a colourful spectrum display. Plug in instruments or audio sources and watch the frequencies bounce around live on screen."
     cost: "~£35-£40"
     electrical: medium
     mechanical: medium
 
   parrot:
     name: "Parrot"
-    description: "This little creature repeats your words… but in it's own voice! Complete with microphone, loudspeaker and case."
+    description: "This little creature repeats your words… but in its own voice! Complete with microphone, loudspeaker and custom case."
     cost: "~£15-£20"
     electrical: medium
     mechanical: medium
 
   light-beam-alarm:
     name: "Light Beam Alarm"
-    description: "Contained in a small and easily concealed box, when an intruder passes by it emits a piercing whistle letting you know they’re there. "
+    description: "Create a stealthy beam-break alarm using light sensors and electronics. When someone crosses the beam: instant dramatic warning noise!"
     cost: "~£15-£20"
     electrical: medium
     mechanical: medium
 
   classic-arcade-game:
     name: "Classic Arcade Game"
-    description: "Build your own arcade machine! Using the built in buttons you can play the classic Pong computer game on your TV. This project uses a ready-made circuit board making it ideal if you're new to electronics."
+    description: "Build your own mini arcade machine and play classic Pong on a real TV. A brilliant first electronics project with plenty of soldering, buttons and retro-gaming energy."
     cost: "~£15-£20"
     electrical: easy
     mechanical: none
 
   electronic-light-bug:
     name: "Electronic Light Bug"
-    description: "This little critter is looking for the light! Driven by two miniature motors it can direct itself to where it detects the most light. This project uses a ready-made circuit board making it ideal if you're new to electronics."
+    description: "This little critter is looking for the light! Driven by two miniature motors it can direct itself to where it detects the most light."
     cost: "~£15-£20"
     electrical: easy
     mechanical: easy
@@ -90,23 +83,15 @@ electronics_projects:
   oscilloscope:
     name: "Oscilloscope"
     long: true
-    description: "Have you ever wondered what is happening in an electronic circuit? Now is your chance to find out. Build this little PC powered oscilloscope and you can look at signals to your heart's content. This uses a ready made circuit board and has a reasonable number of components. All the software you need is provided as well."
+    description: "Build a PC-powered oscilloscope and explore what electronic signals actually look like. Great for curious minds who want to go deeper into how circuits, sound and electronics really work."
     cost: "~£35-£40"
     electrical: advanced
     mechanical: medium
 
-  guitar-headphones-amp:
-    name: "Guitar Headphones Amp"
-    long: true
-    description: "Rock in the comfort of your own headphones with this battery powered box. It's a DI box too, so you can plug into a mixer if you want everyone to hear."
-    cost: "~£40-£45"
-    electrical: advanced
-    mechanical: advanced
-
   theremin:
     name: "Theremin"
     long: true
-    description: "The only instrument you can play without touching it! Create weird and wonderful music by waving your hands!"
+    description: "Make music by waving your hands through the air like a wizard! Weird. Dramatic. Surprisingly fun."
     cost: "~£20-£25"
     electrical: medium
     mechanical: medium
@@ -117,11 +102,11 @@ electronics_projects:
 
 <h1 class="page-title">Technical Activities</h1>
 
-Here's everything you can try on LiveWires.
+Want to make games, build exciting electronics, edit videos, solder robots, or create your own gadgets? This is where the fun stuff lives.
 
-We'll teach you everything you need, and you'll take home what you make to show off.
+You’ll learn by actually building things — and yes, you take your projects home afterwards.
 
-You'll have time for two or three different activities. This page should help you choose!
+You'll have time for two or three different projects. This page should help you choose!
 
 <ul class="compact-links">
   <li><a href="#coding">Coding</a></li>
@@ -133,15 +118,14 @@ You'll have time for two or three different activities. This page should help yo
 
 # Coding <a id="coding"></a>
 
-Don't just learn to use computers, learn how to make them do whatever you want! Whether that's building an app, game or website, you can level up your skills!
-
+Stop just using tech: learn how to bend it to your will. Build games, apps, websites, bots and other exciting creations using real programming tools.
 
 <div class="columns">
 <div>
 
 ## Programming <a id="coding-js"></a>
 
-Start programming for the first time! We’ll guide you through the basic concepts, and we’re here to help if you get stuck!
+Start programming for the first time and build real projects straight away. We’ll teach you the basics, help when you get stuck, and get you making cool stuff fast.
 
 </div>
 <img src="/assets/photo/2022/coding.jpg">
@@ -152,7 +136,7 @@ Start programming for the first time! We’ll guide you through the basic concep
 
 ## Games <a id="coding-games"></a>
 
-Once you’ve got the basics of programming, you can build a game using JavaScript and our [games course](https://livewires.github.io/you-win/install). Create your own version of your favourite mobile game, or perhaps something entirely new.
+Once you’ve got the basics of programming, you can build a game using JavaScript and our [games course](https://livewires.github.io/you-win/install). Rebuild your favourite mobile game, or make something gloriously chaotic from scratch.
 
 </div>
 <img src="/assets/photo/2022/computerhelp.jpg">
@@ -162,7 +146,7 @@ Once you’ve got the basics of programming, you can build a game using JavaScri
 
 # Media Production <a id="creative"></a>
 
-Combine computers with your creative side! Learn how to use computers to create your own art, whether that’s music, stills or film.
+Make things people want to watch, hear, or play. Edit videos, produce music, create 3D worlds, or make cinematic nonsense with new friends.
 
 <div class="columns columns-reverse">
 <img src="/assets/photo/2022/graphics.jpg">
@@ -170,7 +154,7 @@ Combine computers with your creative side! Learn how to use computers to create 
 
 ## 3D Graphics <a id="graphics"></a>
 
-Sculpt, texture and animate your own virtual models or scenery using [Blender](https://www.blender.org/).
+Design characters, objects, scenes or entire worlds using  [Blender](https://www.blender.org/). - the same 3D software used for games, animation and VFX.
 
 </div>
 </div>
@@ -181,7 +165,7 @@ Sculpt, texture and animate your own virtual models or scenery using [Blender](h
 
 ## Sound Production <a id="recording"></a>
 
-Work with others to record, edit, and master a podcast or song with guidance and gear from the professionals. This is a group activity.
+Record music, produce a podcast, add sound effects, mix tracks and experiment with studio gear. This is a group activity.
 
 </div>
 </div>
@@ -192,7 +176,11 @@ Work with others to record, edit, and master a podcast or song with guidance and
 
 ## Video Production <a id="video"></a>
 
-Shoot and edit a short film or trailer, from storyboarding through to post-production. If you've done this before, why not choose Advanced Video Production, where you'll focus in on some of the more technical aspects of recording video. This is a group activity.
+Shoot and edit a short film, trailer or sketch, from storyboarding through to final edit.
+
+Already know the basics? Advanced Video Production dives deeper into cameras, lighting, audio and post-production.
+
+This is a group activity.
 
 
 </div>
@@ -200,8 +188,9 @@ Shoot and edit a short film or trailer, from storyboarding through to post-produ
 
 # Electronics <a id="electronics"></a>
 
-Pick up a soldering iron and build something physical!
-Choose between loads of exciting projects, all carefully designed to make the most of your time with us.
+Build actual gadgets with LEDs, switches, screens, sensors and tiny blinking components. You’ll solder, wire, test, debug and occasionally ask "why is that component suddenly hot?"
+
+Choose from a huge range of projects designed to make the most of your time with us.
 
 <div class="columns columns-reverse">
 <img src="/assets/photo/2022/soldering.jpg">
@@ -209,7 +198,9 @@ Choose between loads of exciting projects, all carefully designed to make the mo
 
 ## Learn to solder
 
-All the projects require some soldering. Some also involve the making circuit boards and cases from scratch. But don’t worry, we’ve got the equipment and know-how to show you what you need to do!
+Every electronics project involves some soldering, and we’ll teach you everything you need to know.
+
+Some projects also include building circuit boards, cases and mechanical parts from scratch, but don’t worry: we’ll guide you through it!
 
 </div>
 </div>
@@ -221,6 +212,8 @@ All the projects require some soldering. Some also involve the making circuit bo
 There's a small extra cost for these activities, which we’ll tell you beforehand.
 
 Each project has two difficulty ratings: the first for the electrical work (soldering and wiring) and the second for mechanical building (PCB, drilling, filing, nuts and bolts etc.).
+
+Whether you’re into music tech, robotics, retro gaming, LEDs, or strange little machines, there’s probably a project here for you.
 
 </div>
 </div>
