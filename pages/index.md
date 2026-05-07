@@ -22,7 +22,7 @@ Spend a week building tech, making friends and exploring life's big questions
 
 ## Create, connect and explore
 
-LiveWires is a week-long residential camp for 12–17s where technology, community and Christian faith come together. You’ll spend the week building real projects — coding, electronics, music production, video and more — using tools and techniques professionals actually use. 
+LiveWires is a week-long residential camp for 12–17s where technology, community and Christian faith come together. You’ll spend the week building techy projects — coding, electronics, music production, video and more — using tools and techniques professionals actually use. 
 
 There’s space to form genuine lifelong friendships, take on ridiculous challenges, and explore life’s bigger questions alongside people who take faith seriously. No experience required. Most people arrive alone and leave already planning how to come back.
 
