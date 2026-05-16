@@ -47,7 +47,7 @@ You’ll work alongside other people learning and building too. Whether you’re
 
 We’ll spend time exploring the Bible together through short talks, conversations and prayer.
 
-Whether you’ve got loads of questions, strong beliefs, or no church background at all, there’s space to think, ask and explore.
+Whether you’ve got loads of questions, strong beliefs, or no church background at all, LiveWires is a safe space to think, ask and explore.
 
 </div>
 </div>
@@ -71,7 +71,7 @@ Evenings are packed with ridiculous games, dorm challenges and time with your do
 
 # Get stuck in
 
-Whether you're into coding, robotics, music, video, design or electronics, there’s something here for you..
+Whether you're into coding, robotics, music, video, design or electronics, there’s something here for you.
 
 We'll teach you everything you need, and you'll come away with something cool to show off!
 
@@ -103,7 +103,7 @@ We'll teach you everything you need, and you'll come away with something cool to
 
 LiveWires takes place at a boarding school in Salisbury, where we turn classrooms, workshops and dorms into a temporary home for a week of building projects, making friends and exploring faith together.
 
-Young people sleep in dorms, usually with 4 to 6 people per room, and all activities are run by our trained volunteer team. Many young people come on their own and quickly make friends.
+Young people sleep in dorms, usually with 4 to 6 people per room, and all activities are run by our trained volunteer team. Friends are made quickly and can last long after the camp is over.
 
 Technical activities happen in classrooms and workshop spaces throughout the site, while larger events take place in the school hall and dining hall. There’s also plenty of space to relax, play games, chat with friends or escape from debugging for a while.
 
@@ -112,7 +112,7 @@ The site is easy to reach by car, and we can also arrange collection from Salisb
 # Meet the team
 
 LiveWires is run by a team of about 30 volunteers,
-including the overall leaders Joel & David.
+headed up by Joel & David.
 
 <div class="columns">
 
@@ -155,7 +155,7 @@ He lives in Birmingham with his wife Rosie. When he is not at a computer, he spe
 
 # How to book <a id="book"></a>
 
-LiveWires bookings are managed by [Scripture Union](https://events.scriptureunion.org.uk/). SU have been running summer holidays for over a hundred years, and LiveWires has been around since the 80s! Most young people arrive not knowing anyone and leave wishing the week was longer.
+LiveWires bookings are managed by [Scripture Union](https://events.scriptureunion.org.uk/). SU have been running summer holidays for over a hundred years, and LiveWires has been around since the 80s! 
 
 <a class="cta" href="https://events.scriptureunion.org.uk/event.php?id=1225" target="blank" rel="noopener" id="book-now">Book here</a>
 
