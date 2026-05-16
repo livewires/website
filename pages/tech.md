@@ -19,7 +19,7 @@ electronics_projects:
 
   digital-echo-chamber:
     name: "Digital Echo Chamber"
-    description: "Turn your voice into echoey sci-fi nonsense. Plug in a microphone or music source and experiment with delay, feedback and weird sound effects. Great for music, sound design, or just making strange noises."
+    description: "Turn your voice into an echoey sci-fi wonder. Plug in a microphone or music source and experiment with delay, feedback and weird sound effects. Great for music, sound design, or just making strange noises."
     cost: "~£15-£20"
     electrical: medium
     mechanical: easy
@@ -146,7 +146,7 @@ Once you’ve got the basics of programming, you can build a game using JavaScri
 
 # Media Production <a id="creative"></a>
 
-Make things people want to watch, hear, or play. Edit videos, produce music, create 3D worlds, or make cinematic nonsense with new friends.
+Make things people want to see and hear. Edit videos, produce music, create 3D worlds, or make cinematic masterpieces with new friends.
 
 <div class="columns columns-reverse">
 <img src="/assets/photo/2022/graphics.jpg">
@@ -154,7 +154,7 @@ Make things people want to watch, hear, or play. Edit videos, produce music, cre
 
 ## 3D Graphics <a id="graphics"></a>
 
-Design characters, objects, scenes or entire worlds using  [Blender](https://www.blender.org/). - the same 3D software used for games, animation and VFX.
+Design characters, objects, scenes or entire worlds using [Blender](https://www.blender.org/) - the same 3D software used for games, animation and VFX.
 
 </div>
 </div>
