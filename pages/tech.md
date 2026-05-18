@@ -5,10 +5,12 @@ template: "tech.html"
 electronics_projects:
   synth:
     name: "Analogue Synth"
+    new: true
     description: "New for 2026: build your own retro-style analogue synth and create bleeps, drones and full-on chiptune chaos. Features a touch-sensitive 1-octave keyboard, 8 sound-shaping knobs, analogue filters and a huge 5-octave range."
     cost: "~£30-£35"
     electrical: advanced
     mechanical: easy
+    url: https://github.com/livewires/electronics/tree/main/synth
 
   macro-pad:
     name: "USB Macro Pad"
@@ -16,6 +18,7 @@ electronics_projects:
     cost: "~£25-£30"
     electrical: medium
     mechanical: easy
+    url: https://github.com/livewires/electronics/tree/main/macropad
 
   digital-echo-chamber:
     name: "Digital Echo Chamber"
@@ -33,10 +36,12 @@ electronics_projects:
 
   3d-led-cube:
     name: "3D LED Cube"
-    description: "Build a glowing 3D cube packed with programmable LEDs and create your own animated light patterns. Looks incredible in the dark, but requires patience and careful soldering for the cube structure."
-    cost: "~£25-30"
+    new: true
+    description: "Redesigned for 2026! Build a glowing 3D cube. Looks incredible in the dark, but requires patience and careful soldering for the cube structure. Now with an <a href='/led-cube'>online animator</a> for custom animations"
+    cost: "~£15-20"
     electrical: medium
     mechanical: advanced
+    url: https://github.com/livewires/electronics/tree/main/led-cube
 
   escape-robot:
     name: "Escape Robot"
