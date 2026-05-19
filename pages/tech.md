@@ -130,7 +130,7 @@ Stop just using tech: learn how to bend it to your will. Build games, apps, webs
 
 ## Programming <a id="coding-js"></a>
 
-Start programming for the first time and build real projects straight away. We’ll teach you the basics, help when you get stuck, and get you making cool stuff fast.
+Start programming for the first time and build real projects straight away. We’ll teach you the basics, help when you get stuck, and get you making cool stuff fast. New for 2026: Learn how machine learning and AI systems are built!
 
 </div>
 <img src="/assets/photo/2022/coding.jpg">
