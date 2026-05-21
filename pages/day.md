@@ -2,27 +2,60 @@
 title: "A day on LiveWires"
 social_title: "technical activity week for 12–17s"
 social_image: "/assets/livewires-og.jpg"
-description: "LiveWires is a technical activity week for 12–17s. Start your summer learning about Jesus and technology."
+description: "LiveWires is a technical activity week for 12–17s. Spend a week building tech, making friends and exploring life's big questions."
 og_description: "Start your summer with a week learning about Jesus and technology."
 ---
 
 # A Day On LiveWires
 
-The day starts with **wake up** - don't worry, we'll make sure you don't oversleep and miss the day! - followed by heading down to the dining room for breakfast.
 
-We eat our **meals** all together - fantastic food provided by the wonderful team of kitchen volunteers! Breakfast, lunch, and dinner are provided every day, along with drinks mid-morning, mid-afternoon, and before bed.
+<div class="columns columns-reverse">
+<img src="/assets/photo/2022/team.jpg">
+<div>
 
-There are three times for **technical activities** (known simply as "tech") each day. These mostly happen in the school's classroom areas, but magically transformed with the vast amount of gear the LiveWires team bring and set up before the holiday starts. Most people will do two or three activities over the course of the holiday.
+The day starts with **wake up** — don’t worry, we’ll make sure you’re up in time — followed by breakfast in the dining hall.
+
+We eat all our **meals** all together, cooked by our brilliant kitchen team. Breakfast, lunch and dinner are provided each day, along with snacks and drinks throughout the day.
+
+</div>
+</div>
+
+<div class="columns">
+<img src="/assets/photo/2022/electronics.jpg">
+<div>
+
+There are three technical activity sessions each day (we usually just call them **tech**). This is where you’ll work on your chosen projects — coding, electronics, music, video and more — using classrooms and workshop spaces transformed with all the gear we bring in for the week. Most people do two or three different activities over the course of the week.
 
 [See everything you can do »](/tech/)
 
-Each morning we all meet together for **The Link** - a time of learning about God and worshipping. This is no ordinary Sunday Service though: every morning there will be a mixture of things, including music with our fabulous band, games, videos, and all kinds of interactive and creative activities.
+</div>
+</div>
 
-In the afternoon, we spread out around the site for **The Zone**. This is an opportunity to relax, play video games, swim, do some craft, enjoy the summer weather on the field, or just hang out on the sofas with friends. Each day there will be a range of different things you can dip in and out of.
 
-After dinner, it's time for some chatting in smaller groups. We'll have a chance to think about God, home, school, family, and all the things that join them up, followed by some worship and time to respond.
 
-Finally, in the evening there's **epilogue**, some time to chat about your day, play crazy games, ask questions and pray together. Then eventually it's time for lights out - ready to sleep so we can do it all again tomorrow...
+<div class="columns columns-reverse">
+<img src="/assets/photo/2019-talk.jpg">
+<div>
 
-A few of our days during the week have a different format: We'll have a day out mid-week to somewhere exciting nearby, and some changes on the last night, but you'll have to come on the holiday to find out what those will be this year!
+Each morning we gather for **The Link** — a time to pause, think about life and explore the Christian faith together. It includes worship with our live band, short talks, videos, games and interactive activities. It’s relaxed, creative, and designed for everyone to engage with in their own way.
 
+After dinner, we meet in smaller groups to talk, reflect and chat about life — things like home, school, friendships and faith — and how they all connect. There’s time to ask questions, discuss and think things through together.
+
+In the evening we have **Epilogue** — a relaxed end to the day with games, conversation, prayer and time to unwind as a group. Then it’s lights out, ready to do it all again tomorrow.
+
+</div>
+</div>
+
+
+
+<div class="columns">
+<img src="/assets/photo/2019-board-games.jpg">
+<div>
+
+In the afternoon comes **The Zone** — free time to unwind and do something different. You might be gaming, swimming, doing crafts, playing sports, hanging out with friends, or just taking a break on the sofas. There’s plenty going on, or you can simply take time out.
+
+
+A couple of days during the week are a bit different — including a full day out somewhere nearby, and a special final night. We won’t spoil those here… you’ll have to come and see for yourself!
+
+</div>
+</div>

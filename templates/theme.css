@@ -23,11 +23,17 @@ a, button, input[type=submit] {
   white-space: normal;
   cursor: pointer;
 }
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
 
 html {
   margin: 0;
   padding: 0;
   font-size: 125%;
+  scroll-behavior: smooth;
 }
 
 /* Add a splash of color even if CSS variables aren't supported. */
@@ -45,6 +51,11 @@ h1 { color: #239dc9; }
   --button: var(--accent);
   --button-text: var(--background);
   --button-hover: var(--foreground);
+
+  --border: #d0d7da;
+  --section-tint: rgba(35, 157, 201, 0.06);
+  --footer-bg: #0b2c35;
+  --footer-text: #b8d8e8;
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -57,6 +68,14 @@ h1 { color: #239dc9; }
     --button: var(--accent);
     --button-text: var(--background);
     --button-hover: var(--foreground);
+
+    --border: #1e3a4a;
+    --section-tint: rgba(79, 184, 222, 0.08);
+    --footer-bg: #00080f;
+    --footer-text: #dcf0fe;
+  }
+  .cta, .cta:hover {
+    background: linear-gradient(135deg, #4fb8de, #1e8aaa);
   }
 }
 .fill-foreground { fill: var(--foreground); }
@@ -87,6 +106,7 @@ li:before,
   font-family: 'iA Writer Duospace', monospace;
   font-weight: bold;
   word-spacing: -0.5ch;
+  letter-spacing: 0.02em;
 }
 
 p, h1, h2, h3, h4, h5, h6 {
@@ -104,11 +124,8 @@ h1 {
   border-bottom: 0.25ch solid;
   color: var(--accent);
 }
-h1.page-title {
-  margin-top: 0;
-}
 h2 {
-  margin: 1rem 0 0.5rem;
+  margin: 2rem 0 0.5rem;
   font-size: 1.5rem;
   line-height: 1.333;
 }
@@ -126,6 +143,7 @@ img {
   max-width: 100%;
   margin: 1.5rem 0;
   display: block;
+  border-radius: 0.35rem;
 }
 
 blockquote {
@@ -177,43 +195,146 @@ li:before {
 }
 
 strong {
-  font-weight: 600;
+  font-weight: 900;
   color: var(--accent);
 }
 
 a {
   color: var(--link);
   border-bottom: 0.15ch solid;
+  transition: opacity 0.12s ease;
 }
 a:hover {
   color: var(--link);
+  opacity: 0.75;
 }
 
 .logo {
   display: block;
   border-bottom: none;
-  margin: 1.5rem 0 0.325rem;
-  /* Attempt to better balance the logo horizontally */
-  padding-right: 1.5rem;
+  margin: 0;
+  padding-right: 0;
 }
 a.logo, a.logo:hover {
   border-bottom: none;
+  opacity: 1;
 }
 .logo > svg {
   max-width: 100%;
+  display: block;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.75rem;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  margin: 0 -0.75rem;
+}
+header .logo svg {
+  height: 1.75rem;
+  width: auto;
+}
+@media (prefers-color-scheme: dark) {
+  header {
+    background: rgba(0, 13, 21, 0.88);
+  }
+}
+.header-cta {
+  background: var(--accent);
+  color: var(--background);
+  padding: 0.4rem 0.9rem;
+  border-radius: 0.35rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-bottom: none;
+  white-space: nowrap;
+  transition: background 0.15s ease;
+}
+.header-cta:hover {
+  background: var(--foreground);
+  color: var(--background);
+  opacity: 1;
+}
+@media (max-width: 22rem) {
+  .header-cta { display: none; }
+}
+
+.hero {
+  background:
+    radial-gradient(ellipse at 20% 60%, rgba(24, 128, 165, 0.45) 0%, transparent 55%),
+    radial-gradient(circle, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(150deg, #0b2c35 0%, #0d4a65 55%, #1880a5 100%);
+  background-size: 100% 100%, 28px 28px, 100% 100%;
+  color: #dcf0fe;
+  padding: 2rem 0.75rem 2rem;
+  margin: 0 -0.75rem 1rem;
+  border-radius: 0 0 1.5rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  right: -2rem;
+  bottom: -2rem;
+  width: 14rem;
+  height: 14rem;
+  background-image: url("data:image/svg+xml,%3Csvg width='128' height='128' viewBox='0 0 128 128' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M96 52l-48 72 12-48H32L80 4 68 52z' fill='white' fill-rule='nonzero'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.06;
+  pointer-events: none;
+  transform: rotate(10deg);
+  animation: hero-bolt 7s ease-in-out infinite;
+}
+@keyframes hero-bolt {
+  0%, 100% { opacity: 0.06; transform: rotate(10deg) scale(1); }
+  50% { opacity: 0.11; transform: rotate(10deg) scale(1.08); }
+}
+.hero h1 {
+  color: #fff;
+  font-size: 2.5rem;
+  border-bottom: none;
+  margin-top: 0;
+}
+.hero li:before {
+  color: rgba(220, 240, 254, 0.5);
+}
+.hero strong {
+  color: inherit;
+}
+.hero .cta {
+  background: #fff;
+  color: #0b2c35;
+  margin-top: 0.75rem;
+}
+.hero .cta:hover {
+  background: rgba(255, 255, 255, 0.88);
+  color: #0b2c35;
 }
 
 .cta, .cta:hover {
-  background: var(--button);
+  background: linear-gradient(135deg, #1caad8, #0d7a9e);
   color: var(--button-text);
-  padding: 0.5rem 1rem;
+  padding: 0.625rem 1.5rem;
   display: inline-block;
   font-weight: 600;
-  border-radius: 0.25rem;
+  border-radius: 0.35rem;
   border-bottom: none;
+  transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
 .cta:hover {
   background: var(--button-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 }
 
 .activity-stats {
@@ -221,11 +342,63 @@ a.logo, a.logo:hover {
   margin-top: -0.75rem;
 }
 
+.electronics-project h3 {
+  padding-bottom: 0.5rem;
+}
+
+.electronics-project {
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--accent);
+  border-radius: 0.5rem;
+  padding: 1rem 1.25rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.electronics-project:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  background: rgba(35, 157, 201, 0.12);
+  color: var(--accent);
+  border: 1.5px solid currentColor;
+}
+.badge-new {
+  background: rgba(22, 163, 100, 0.12);
+  color: #16a364;
+}
+@media (prefers-color-scheme: dark) {
+  .badge-new {
+    color: #34d399;
+    background: rgba(52, 211, 153, 0.12);
+  }
+}
+
 .footer {
-  margin: 4.5rem 0 1.5rem;
+  background: var(--footer-bg);
+  color: var(--footer-text);
+  border-radius: 0.5rem 0.5rem 0 0;
+  margin: 4.5rem 0 0;
+  padding: 2rem 1.5rem 1.5rem;
 }
 .footer a {
-  background: none;
+  color: var(--footer-text);
+  opacity: 0.8;
+  border-bottom-color: transparent;
+}
+.footer a:hover {
+  opacity: 1;
+}
+.footer .has-bolt {
+  color: var(--footer-text);
+  border-top-color: var(--accent);
 }
 .has-bolt {
   border-top: 0.5ch solid var(--accent);
@@ -238,13 +411,23 @@ a.logo, a.logo:hover {
   color: var(--accent);
 }
 
-@media screen and (min-width: 53rem) {
-  .logo {
-    margin: 3rem 0 0.75rem;
+@media screen and (min-width: 57rem) {
+  header {
+    margin: 0 -1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  .hero {
+    padding: 2.5rem 1.5rem 1rem;
+    margin: 0 -1.5rem 1rem;
+  }
+  .hero h1 {
+    font-size: 3.5rem;
   }
   body {
     margin: 0 auto;
-    max-width: 40rem;
+    max-width: 52rem;
+    padding: 0 1.5rem;
   }
   body > img {
     max-width: 20rem;
@@ -256,9 +439,25 @@ a.logo, a.logo:hover {
     grid-template-columns: 1fr 1fr;
     column-gap: 1.5rem;
     flex-direction: row;
+    background: linear-gradient(150deg, var(--section-tint), transparent);
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+    margin: 1.5rem -1.25rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .columns:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+  .columns > * > :first-child {
+    margin-top: 0;
   }
   .columns > img {
+    height: 16rem;
+    object-fit: cover;
     margin: 0.75rem 0;
+    border-radius: 0.35rem;
+    width: 100%;
   }
   .columns-reverse > *:nth-child(1) {
     grid-column: 2;
@@ -353,10 +552,10 @@ textarea {
   -webkit-appearance: none;
   appearance: none;
   outline: none;
-  background: #fff;
-  color: #222;
+  background: var(--background);
+  color: var(--text);
   width: 100%;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border);
   font: inherit;
   font-size: 1rem;
   border-radius: 0.25rem;
@@ -368,12 +567,13 @@ input[type=email]:focus,
 input[type=tel]:focus,
 select:focus,
 textarea:focus {
-  border-color: #2ba8d8;
-  box-shadow: 0 0 0.25rem rgba(43, 168, 216, 0.5);
+  border-color: var(--accent);
+  box-shadow: 0 0 0.25rem rgba(43, 168, 216, 0.4);
 }
 
 .field-hint {
-  color: #333;
+  color: var(--text);
+  opacity: 0.7;
   font-size: 0.875rem;
 }
 

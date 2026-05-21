@@ -1,0 +1,1432 @@
+---
+template: "noframe.html"
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LED Cube Animator</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: #0d1117;
+            color: #c9d1d9;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* ── Page header ─────────────────────────────────────────── */
+
+        #page-header {
+            background: #161b22;
+            border-bottom: 1px solid #30363d;
+            padding: 8px 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        #lw-logo {
+            height: 26px;
+            width: auto;
+        }
+
+        #header-divider {
+            width: 1px;
+            height: 20px;
+            background: #30363d;
+        }
+
+        #page-title {
+            font-size: 13px;
+            color: #8b949e;
+            letter-spacing: 0.5px;
+        }
+
+        #header-github {
+            margin-left: auto;
+            font-size: 12px;
+            color: #8b949e;
+            text-decoration: none;
+        }
+
+        #header-github:hover { color: #58a6ff; }
+
+        #app {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* ── Sidebar ─────────────────────────────────────────────── */
+
+        #sidebar {
+            width: 180px;
+            min-width: 180px;
+            background: #161b22;
+            border-right: 1px solid #30363d;
+            display: flex;
+            flex-direction: column;
+            padding: 12px 8px;
+            gap: 8px;
+        }
+
+        .section-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8b949e;
+            padding: 0 4px;
+        }
+
+        #animation-list {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .animation-item {
+            padding: 7px 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            color: #c9d1d9;
+            border: 1px solid transparent;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .animation-item:hover { background: #21262d; }
+
+        .animation-item.active {
+            background: #1f6feb22;
+            border-color: #1f6feb;
+            color: #58a6ff;
+        }
+
+        hr.divider {
+            border: none;
+            border-top: 1px solid #30363d;
+        }
+
+        .btn-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px;
+        }
+
+        /* ── Shared button styles ────────────────────────────────── */
+
+        button, .file-btn {
+            background: #21262d;
+            color: #c9d1d9;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 5px 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 12px;
+            transition: background 0.1s, border-color 0.1s;
+            display: inline-block;
+            text-align: center;
+        }
+
+        button:hover, .file-btn:hover {
+            background: #30363d;
+            border-color: #58a6ff;
+        }
+
+        button.danger:hover {
+            background: #2d1515;
+            border-color: #f85149;
+            color: #f85149;
+        }
+
+        button.primary {
+            background: #1f6feb;
+            border-color: #1f6feb;
+            color: #fff;
+        }
+
+        button.primary:hover { background: #388bfd; }
+
+        /* ── Main area ───────────────────────────────────────────── */
+
+        #main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        #controls-bar {
+            background: #161b22;
+            border-bottom: 1px solid #30363d;
+            padding: 8px 14px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex-shrink: 0;
+        }
+
+        .ctrl-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .ctrl-group label {
+            font-size: 11px;
+            color: #8b949e;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        input[type="text"], input[type="number"] {
+            background: #0d1117;
+            color: #c9d1d9;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 4px 8px;
+            font-family: inherit;
+            font-size: 13px;
+            outline: none;
+        }
+
+        input:focus { border-color: #58a6ff; }
+        input[type="number"] { width: 58px; }
+        input[type="text"]   { width: 210px; }
+
+        /* ── SVG display ─────────────────────────────────────────── */
+
+        #svg-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            overflow: hidden;
+        }
+
+        #svg-container svg {
+            width: auto;
+            height: 100%;
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        /* ── Group-toggle bar ───────────────────────────────────── */
+
+        #group-bar {
+            background: #0d1117;
+            border-top: 1px solid #21262d;
+            padding: 6px 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+            flex-wrap: wrap;
+        }
+
+        .group-set {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .group-set-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #8b949e;
+            min-width: 38px;
+        }
+
+        .group-divider {
+            width: 1px;
+            height: 22px;
+            background: #30363d;
+        }
+
+        /* ── Timeline ────────────────────────────────────────────── */
+
+        #timeline {
+            background: #161b22;
+            border-top: 1px solid #30363d;
+            flex-shrink: 0;
+            padding: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        #timeline-controls {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        #timeline-controls .spacer { flex: 1; }
+
+        #frames-strip {
+            display: flex;
+            gap: 3px;
+            overflow-x: auto;
+            padding-bottom: 2px;
+        }
+
+        #frames-strip::-webkit-scrollbar { height: 4px; }
+        #frames-strip::-webkit-scrollbar-track { background: #0d1117; }
+        #frames-strip::-webkit-scrollbar-thumb { background: #30363d; border-radius: 2px; }
+
+        .frame-box {
+            min-width: 54px;
+            border: 1px solid #30363d;
+            border-radius: 4px;
+            cursor: pointer;
+            padding: 4px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            background: #0d1117;
+            flex-shrink: 0;
+            transition: border-color 0.1s;
+        }
+
+        .frame-box:hover { border-color: #58a6ff; }
+
+        .frame-box.active {
+            border-color: #f85149;
+            background: #1a0000;
+        }
+
+        .frame-box.dragging { opacity: 0.35; }
+
+        .frame-box.drag-over {
+            border-color: #58a6ff;
+            border-style: dashed;
+            background: #0d2030;
+        }
+
+        .frame-num { font-size: 9px; color: #8b949e; }
+        .frame-hex { font-size: 8px; color: #6e7681; }
+
+        /* ── Help modal ─────────────────────────────────────────── */
+
+        #help-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.65);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #help-overlay.open { display: flex; }
+
+        #help-box {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            padding: 24px 28px;
+            max-width: 420px;
+            width: 90%;
+            color: #c9d1d9;
+            position: relative;
+        }
+
+        #help-box h2 {
+            font-size: 15px;
+            color: #58a6ff;
+            margin-bottom: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        #help-box p {
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            color: #c9d1d9;
+        }
+
+        #help-box code {
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 4px;
+            padding: 1px 5px;
+            font-family: inherit;
+            color: #79c0ff;
+        }
+
+        #help-box .close-btn {
+            margin-top: 16px;
+            width: 100%;
+        }
+
+        /* ── IO bar ──────────────────────────────────────────────── */
+
+        #io-bar {
+            background: #0d1117;
+            border-top: 1px solid #21262d;
+            padding: 6px 8px;
+            display: flex;
+            gap: 6px;
+            justify-content: flex-end;
+            flex-shrink: 0;
+        }
+    </style>
+<script>
+(function () {
+    var _svg = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="150mm"
+   height="120mm"
+   viewBox="0 0 150 120"
+   version="1.1"
+   id="svg70796"
+   xml:space="preserve"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="led-cube-base.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><sodipodi:namedview
+     id="namedview70798"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="3.4599915"
+     inkscape:cx="152.45702"
+     inkscape:cy="293.35332"
+     inkscape:window-width="3836"
+     inkscape:window-height="2121"
+     inkscape:window-x="0"
+     inkscape:window-y="18"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer5" /><defs
+     id="defs70793"><linearGradient
+       inkscape:collect="always"
+       id="linearGradient96557"><stop
+         style="stop-color:#fff09e;stop-opacity:0.53280574;"
+         offset="0"
+         id="stop96553" /><stop
+         style="stop-color:#8f8e6b;stop-opacity:0.29803922;"
+         offset="0.38742948"
+         id="stop96561" /><stop
+         style="stop-color:#00112b;stop-opacity:0;"
+         offset="1"
+         id="stop96555" /></linearGradient><linearGradient
+       inkscape:collect="always"
+       id="linearGradient96378"><stop
+         style="stop-color:#191927;stop-opacity:1;"
+         offset="0"
+         id="stop96374" /><stop
+         style="stop-color:#191926;stop-opacity:1;"
+         offset="0.08976577"
+         id="stop96380" /><stop
+         style="stop-color:#a6a6b4;stop-opacity:1;"
+         offset="0.11261085"
+         id="stop96382" /><stop
+         style="stop-color:#161620;stop-opacity:1;"
+         offset="0.13061444"
+         id="stop96384" /><stop
+         style="stop-color:#171723;stop-opacity:1;"
+         offset="0.99813402"
+         id="stop96376" /></linearGradient><inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect96336"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,2.6458333,0,1 @ F,0,0,1,0,2.6458333,0,1 @ F,0,0,1,0,2.6458333,0,1 @ F,0,0,1,0,2.6458333,0,1"
+       unit="px"
+       method="auto"
+       mode="F"
+       radius="10"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" /><linearGradient
+       inkscape:collect="always"
+       id="linearGradient89356"><stop
+         style="stop-color:#0d0d14;stop-opacity:1;"
+         offset="0"
+         id="stop89352" /><stop
+         style="stop-color:#1c1c2b;stop-opacity:1;"
+         offset="1"
+         id="stop89354" /></linearGradient><linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient89356"
+       id="linearGradient89358"
+       x1="11.057069"
+       y1="86.542951"
+       x2="141.82461"
+       y2="86.542951"
+       gradientUnits="userSpaceOnUse" /><linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient96378"
+       id="linearGradient96371"
+       gradientUnits="userSpaceOnUse"
+       x1="6.7269788"
+       y1="91.929466"
+       x2="141.82461"
+       y2="86.542951"
+       gradientTransform="translate(1.5008468e-6,1.4882328)" /><radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient96557"
+       id="radialGradient96559"
+       cx="69.93972"
+       cy="88.405426"
+       fx="69.93972"
+       fy="88.405426"
+       r="68.374466"
+       gradientTransform="matrix(1.0630878,0,0,0.27367086,-14.174656,75.487698)"
+       gradientUnits="userSpaceOnUse" /></defs><g
+     inkscape:groupmode="layer"
+     id="layer7"
+     inkscape:label="Board 1"
+     style="display:none"><rect
+       style="display:inline;fill:#00112b;fill-opacity:1;stroke:#f3ce47;stroke-width:0.264999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="rect96282"
+       width="164.84071"
+       height="145.0486"
+       x="-4.9954557"
+       y="-6.0050483"
+       ry="7.3395591" /></g><g
+     inkscape:groupmode="layer"
+     id="layer5"
+     inkscape:label="Board"
+     style="display:inline"><ellipse
+       style="display:inline;fill:url(#radialGradient96559);fill-opacity:1;stroke:none;stroke-width:0.273088;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="path96551"
+       cx="60.177402"
+       cy="99.681694"
+       rx="72.398323"
+       ry="18.712099"
+       transform="matrix(0.99034372,-0.13863375,0.12177877,0.99255727,0,0)" /><path
+       style="display:inline;fill:url(#linearGradient96371);fill-opacity:1;stroke:#f3f3f3;stroke-width:0.265;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       d="m 11.846926,78.735271 7.085979,24.545489 c 0.409177,1.40397 1.356685,2.50879 6.361827,1.6775 L 139.62252,86.079955 c 0.82335,-0.160528 0.82874,-0.715613 0.83712,-1.253407 0.005,-0.351502 0.01,-0.883138 0.01,-0.883138 L 93.804664,70.993236 C 92.12019,70.525769 90.380235,70.32998 88.635804,70.443801 l -74.601197,4.867605 c -2.495008,0.162795 -2.349788,1.577271 -2.187681,3.423865 z"
+       id="path72402-1"
+       sodipodi:nodetypes="ccccscsssc"
+       inkscape:label="board" /><path
+       style="display:inline;fill:url(#linearGradient89358);fill-opacity:1;stroke:#f3f3f3;stroke-width:0.265;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       d="m 11.846924,77.247038 7.085979,24.545492 c 0.409177,1.40397 1.356685,2.50879 6.361827,1.6775 L 139.62252,84.591721 c 0.82335,-0.160528 1.04758,-0.63789 0.67718,-0.889497 -0.2908,-0.197533 -1.04555,-0.418935 -1.04555,-0.418935 L 93.804667,69.505003 c -1.67295,-0.507164 -3.426997,-0.697366 -5.168862,-0.549435 l -73.944749,6.279897 c -2.271361,0.1929 -3.139711,0.908458 -2.844132,2.011573 z"
+       id="path72402"
+       sodipodi:nodetypes="ccccscsssc"
+       inkscape:label="board" /><path
+       style="display:none;fill:#959595;fill-opacity:1;stroke:#f3f3f3;stroke-width:0.265;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       d="m 19.673206,104.33268 0.03335,2.4542 122.118054,-20.618741 -0.0384,-2.117249 z"
+       id="path91601" /><path
+       style="display:none;fill:#161616;fill-opacity:1;stroke:#f3f3f3;stroke-width:0.265;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       d="m 11.229396,75.360071 -10e-7,1.182749 8.477161,30.24406 -0.03335,-2.4542 z"
+       id="path92329" /><ellipse
+       style="fill:#161616;fill-opacity:1;stroke:#f3ce47;stroke-width:0.264999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="path93109"
+       cx="25.630251"
+       cy="99.561157"
+       rx="0.7199468"
+       ry="0.24979959" /><ellipse
+       style="display:inline;fill:#161616;fill-opacity:1;stroke:#f3ce47;stroke-width:0.264999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="path93109-1"
+       cx="21.158396"
+       cy="88.413422"
+       rx="0.7199468"
+       ry="0.24979959" /><ellipse
+       style="display:inline;fill:#161616;fill-opacity:1;stroke:#f3ce47;stroke-width:0.264999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="path93109-1-2"
+       cx="18.188709"
+       cy="80.491432"
+       rx="0.7199468"
+       ry="0.24979959" /><ellipse
+       style="display:inline;fill:#161616;fill-opacity:1;stroke:#f3ce47;stroke-width:0.264999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="path93109-1-9"
+       cx="52.305923"
+       cy="84.419228"
+       rx="0.7199468"
+       ry="0.24979959" /><ellipse
+       style="display:inline;fill:#161616;fill-opacity:1;stroke:#f3ce47;stroke-width:0.264999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="path93109-1-3"
+       cx="63.855656"
+       cy="93.382347"
+       rx="0.7199468"
+       ry="0.24979959" /><ellipse
+       style="display:inline;fill:#161616;fill-opacity:1;stroke:#f3ce47;stroke-width:0.264999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="path93109-1-6"
+       cx="67.596764"
+       cy="75.383133"
+       rx="0.7199468"
+       ry="0.24979959" /><ellipse
+       style="display:inline;fill:#161616;fill-opacity:1;stroke:#f3ce47;stroke-width:0.264999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="path93109-1-8"
+       cx="44.537746"
+       cy="77.696281"
+       rx="0.7199468"
+       ry="0.24979959" /><ellipse
+       style="display:inline;fill:#161616;fill-opacity:1;stroke:#f3ce47;stroke-width:0.264999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="path93109-1-21"
+       cx="78.926537"
+       cy="81.096176"
+       rx="0.7199468"
+       ry="0.24979959" /><ellipse
+       style="display:inline;fill:#161616;fill-opacity:1;stroke:#f3ce47;stroke-width:0.264999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="path93109-1-0"
+       cx="93.735504"
+       cy="88.573318"
+       rx="0.7199468"
+       ry="0.24979959" /></g><g
+     inkscape:groupmode="layer"
+     id="layer6"
+     inkscape:label="Legs"><path
+       style="fill:none;stroke:#afafaf;stroke-width:0.264583px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       d="m 25.634417,11.588651 v 87.93282"
+       id="path76347" /><path
+       style="fill:none;stroke:#afafaf;stroke-width:0.264583px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       d="m 21.158395,17.166791 v 71.22385"
+       id="path76355" /><path
+       style="fill:none;stroke:#afafaf;stroke-width:0.264583px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       d="m 18.188709,20.821281 v 59.64004"
+       id="path76357" /><path
+       style="fill:none;stroke:#afafaf;stroke-width:0.264583px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       d="m 44.537745,23.085791 v 54.60966"
+       id="path76359" /><path
+       style="fill:none;stroke:#afafaf;stroke-width:0.264583px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       d="m 52.323342,19.850871 v 64.55658"
+       id="path76361" /><path
+       style="fill:none;stroke:#afafaf;stroke-width:0.264583px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       d="m 63.845047,15.002621 v 78.36764"
+       id="path76363" /><path
+       style="fill:none;stroke:#afafaf;stroke-width:0.264583px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       d="m 67.56072,24.337651 v 51.01559"
+       id="path76365" /><path
+       style="fill:none;stroke:#afafaf;stroke-width:0.264583px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       d="m 78.908568,21.439731 v 59.65436"
+       id="path76367" /><path
+       style="fill:none;stroke:#afafaf;stroke-width:0.264583px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       d="m 93.722518,17.743521 v 70.82694"
+       id="path76369" /><path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 384.89997,43.169211 3.1329,-0.33005"
+       id="path76373" /><path
+       style="fill:none;stroke:#afafaf;stroke-width:0.264583px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       d="m 22.951177,47.598151 v 1.75271"
+       id="path76389" /><path
+       style="fill:none;stroke:#afafaf;stroke-width:0.264583px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       d="m 22.940009,75.949911 v 0.80868"
+       id="path76399" /><path
+       style="fill:none;stroke:#afafaf;stroke-width:0.264583px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       d="m 23.008142,17.166791 v 1.70643"
+       id="path76405" /><path
+       style="fill:none;stroke:#afafaf;stroke-width:0.264583px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       d="m 19.530924,20.821281 v 1.57476 l 8.569396,-8.56939 -0.02024,-2.238"
+       id="path76407" /><path
+       style="fill:none;stroke:#afafaf;stroke-width:0.264583px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       d="m 19.485829,46.542111 v 1.36621 l 8.7275,3.69408 v -2.60386"
+       id="path76409" /><path
+       style="fill:none;stroke:#afafaf;stroke-width:0.264583px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       d="m 95.929798,17.652031 v 1.64204 l -27.135873,5.95453 v -0.94061"
+       id="path76421" /><path
+       style="fill:none;stroke:#afafaf;stroke-width:0.264583px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       d="m 80.613628,21.439731 v 1.21522"
+       id="path76423" /><path
+       style="fill:none;stroke:#afafaf;stroke-width:0.264583px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       d="m 96.062088,48.056041 v 1.89393 l -27.400455,-2.77283 v -1.19325"
+       id="path76429" /><path
+       style="fill:none;stroke:#afafaf;stroke-width:0.264583px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       d="m 80.481338,46.962021 v 1.41123"
+       id="path77157" /><path
+       style="fill:none;stroke:#afafaf;stroke-width:0.264583px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       d="m 19.530924,22.396041 49.263001,2.85256"
+       id="path77159" /><path
+       style="fill:none;stroke:#afafaf;stroke-width:0.264583px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       d="m 19.485829,47.908321 49.175804,-0.73118"
+       id="path77161" /><path
+       style="fill:none;stroke:#afafaf;stroke-width:0.264583px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       d="m 45.853193,67.730721 v 1.48838 l 20.597661,13.45455 -0.0427,-2.96284"
+       id="path77165" /><path
+       style="fill:none;stroke:#afafaf;stroke-width:0.264583px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       d="m 53.786229,72.617311 v 1.78371"
+       id="path77167" /><path
+       style="fill:none;stroke:#afafaf;stroke-width:0.264583px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       d="m 68.829276,66.437161 v 1.01361 l 27.038612,11.57362 v -2.70656"
+       id="path77169" /><path
+       style="fill:none;stroke:#afafaf;stroke-width:0.264583px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       d="m 80.548118,70.685751 v 1.78116"
+       id="path77171" /><path
+       style="fill:none;stroke:#afafaf;stroke-width:0.264583px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       d="m 45.720901,46.144261 v 1.37398 l 20.285157,3.16373 v -2.27179"
+       id="path77173" /><path
+       style="fill:none;stroke:#afafaf;stroke-width:0.264583px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       d="m 53.845586,47.044861 v 1.74053"
+       id="path77175" /><path
+       style="fill:none;stroke:#afafaf;stroke-width:0.264583px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       d="m 45.932859,23.085791 v 0.83905 l 20.162231,-6.948 v -2.025"
+       id="path77177" /><path
+       style="fill:none;stroke:#afafaf;stroke-width:0.264583px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       d="m 53.911488,19.850871 v 1.3245"
+       id="path77179" /><path
+       style="fill:none;stroke:#a8a8a8;stroke-width:0.265;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       d="m 19.623281,70.577591 v 0.77171 l 8.470722,13.74721 v -1.15733"
+       id="path77907" /></g><g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="LEDs"
+     transform="translate(35.191319,1.1719321)"
+     style="display:inline;fill:#ff8080;fill-opacity:0.527084"
+     sodipodi:insensitive="true"><path
+       style="display:inline;fill:#ff3333;fill-opacity:1;stroke:#000000;stroke-width:0.213418px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 31.899217,20.996421 v 2.13964 h 2.267093 v -2.13964 c 0,0 0.03127,-1.3199 -1.124215,-1.33353 -1.155487,-0.0136 -1.142878,1.33353 -1.142878,1.33353 z"
+       id="path72524-386-6"
+       sodipodi:nodetypes="cccczc"
+       inkscape:label="LED27" /><path
+       style="display:inline;fill:#ff3333;fill-opacity:1;stroke:#000000;stroke-width:0.213418px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 8.9119861,19.743071 v 2.13964 h 2.2670929 v -2.13964 c 0,0 0.03127,-1.3199 -1.124215,-1.33353 -1.1554869,-0.0136 -1.1428779,1.33353 -1.1428779,1.33353 z"
+       id="path72524-386-4"
+       sodipodi:nodetypes="cccczc"
+       inkscape:label="LED26" /><path
+       style="display:inline;fill:#ff3333;fill-opacity:1;stroke:#000000;stroke-width:0.213418px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m -17.44795,17.494131 v 2.13964 h 2.267093 v -2.13964 c 0,0 0.03127,-1.3199 -1.124215,-1.33353 -1.155487,-0.0136 -1.142878,1.33353 -1.142878,1.33353 z"
+       id="path72524-386"
+       sodipodi:nodetypes="cccczc"
+       inkscape:label="LED25" /><path
+       style="display:inline;fill:#ff3333;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 43.207237,17.590551 v 2.6526 h 2.810604 v -2.6526 c 0,0 0.03877,-1.63633 -1.393734,-1.65323 -1.432502,-0.0169 -1.41687,1.65323 -1.41687,1.65323 z"
+       id="path72524-76"
+       sodipodi:nodetypes="cccczc"
+       inkscape:label="LED24" /><path
+       style="display:inline;fill:#ff3333;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 16.599305,15.980471 v 2.6526 h 2.810604 v -2.6526 c 0,0 0.03877,-1.63633 -1.393734,-1.65323 -1.432502,-0.0169 -1.41687,1.65323 -1.41687,1.65323 z"
+       id="path72524-48"
+       sodipodi:nodetypes="cccczc"
+       inkscape:label="LED23" /><path
+       style="display:inline;fill:#ff3333;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m -14.485113,13.294481 v 2.6526 h 2.810604 v -2.6526 c 0,0 0.03877,-1.63633 -1.393733,-1.65323 -1.432502,-0.0169 -1.41687,1.65323 -1.416871,1.65323 z"
+       id="path72524-33"
+       sodipodi:nodetypes="cccczc"
+       inkscape:label="LED22" /><path
+       style="display:inline;fill:#ff3333;fill-opacity:1;stroke:#000000;stroke-width:0.265;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m 57.762279,13.057951 v 3.44422 h 3.64938 v -3.44422 c 0,0 0.05034,-2.12467 -1.80967,-2.14661 -1.860007,-0.022 -1.83971,2.14661 -1.83971,2.14661 z"
+       id="path72524-64-3"
+       sodipodi:nodetypes="cccczc"
+       inkscape:label="LED21" /><path
+       style="display:inline;fill:#ff3333;fill-opacity:1;stroke:#000000;stroke-width:0.265;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m 28.066354,10.335691 v 3.44422 h 3.64938 v -3.44422 c 0,0 0.05034,-2.1246699 -1.80967,-2.1466099 -1.860007,-0.022 -1.83971,2.1466099 -1.83971,2.1466099 z"
+       id="path72524-64-0"
+       sodipodi:nodetypes="cccczc"
+       inkscape:label="LED20" /><path
+       style="display:inline;fill:#ff3333;fill-opacity:1;stroke:#000000;stroke-width:0.265;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m -10.052333,6.9725011 v 3.4442199 h 3.6493801 V 6.9725011 c 0,0 0.05034,-2.12467 -1.80967,-2.14661 -1.8600071,-0.022 -1.8397101,2.14661 -1.8397101,2.14661 z"
+       id="path72524-64"
+       sodipodi:nodetypes="cccczc"
+       inkscape:label="LED19" /><path
+       style="display:inline;fill:#ff3333;fill-opacity:1;stroke:#000000;stroke-width:0.213418px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 31.899217,42.672321 v 2.13964 h 2.267093 v -2.13964 c 0,0 0.03127,-1.3199 -1.124215,-1.33353 -1.155487,-0.0136 -1.142878,1.33353 -1.142878,1.33353 z"
+       id="path72524-386-9"
+       sodipodi:nodetypes="cccczc"
+       inkscape:label="LED18" /><path
+       style="display:inline;fill:#ff3333;fill-opacity:1;stroke:#000000;stroke-width:0.213418px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 8.9119861,42.825391 v 2.13964 h 2.2670929 v -2.13964 c 0,0 0.03127,-1.3199 -1.124215,-1.33353 -1.1554869,-0.0136 -1.1428779,1.33353 -1.1428779,1.33353 z"
+       id="path72524-386-2"
+       sodipodi:nodetypes="cccczc"
+       inkscape:label="LED17" /><path
+       style="display:inline;fill:#ff3333;fill-opacity:1;stroke:#000000;stroke-width:0.213418px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m -17.447949,43.171751 v 2.13964 h 2.267093 v -2.13964 c 0,0 0.03127,-1.3199 -1.124215,-1.33353 -1.155487,-0.0136 -1.142878,1.33353 -1.142878,1.33353 z"
+       id="path72524-386-24"
+       sodipodi:nodetypes="cccczc"
+       inkscape:label="LED16" /><path
+       style="display:inline;fill:#ff3333;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 43.207237,43.005201 v 2.6526 h 2.810604 v -2.6526 c 0,0 0.03877,-1.63633 -1.393734,-1.65323 -1.432502,-0.0169 -1.41687,1.65323 -1.41687,1.65323 z"
+       id="path72524-75"
+       sodipodi:nodetypes="cccczc"
+       inkscape:label="LED15" /><path
+       style="display:inline;fill:#ff3333;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 16.56626,43.220321 v 2.6526 h 2.810604 v -2.6526 c 0,0 0.03877,-1.63633 -1.393734,-1.65323 -1.432502,-0.0169 -1.41687,1.65323 -1.41687,1.65323 z"
+       id="path72524-59"
+       sodipodi:nodetypes="cccczc"
+       inkscape:label="LED14" /><path
+       style="display:inline;fill:#ff3333;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m -14.485113,43.641331 v 2.6526 h 2.810604 v -2.6526 c 0,0 0.03877,-1.63633 -1.393734,-1.65323 -1.432502,-0.0169 -1.41687,1.65323 -1.41687,1.65323 z"
+       id="path72524-18"
+       sodipodi:nodetypes="cccczc"
+       inkscape:label="LED13" /><path
+       style="display:inline;fill:#ff3333;fill-opacity:1;stroke:#000000;stroke-width:0.265;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m 57.762279,43.307391 v 3.44422 h 3.64938 v -3.44422 c 0,0 0.05034,-2.12467 -1.80967,-2.14661 -1.860007,-0.022 -1.83971,2.14661 -1.83971,2.14661 z"
+       id="path72524-64-09"
+       sodipodi:nodetypes="cccczc"
+       inkscape:label="LED12" /><path
+       style="display:inline;fill:#ff3333;fill-opacity:1;stroke:#000000;stroke-width:0.265;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m 28.066354,43.794031 v 3.44422 h 3.64938 v -3.44422 c 0,0 0.05034,-2.12467 -1.80967,-2.14661 -1.860007,-0.022 -1.83971,2.14661 -1.83971,2.14661 z"
+       id="path72524-64-2"
+       sodipodi:nodetypes="cccczc"
+       inkscape:label="LED11" /><path
+       style="display:inline;fill:#ff3333;fill-opacity:1;stroke:#000000;stroke-width:0.265;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m -10.052333,44.323601 v 3.44422 h 3.6493801 v -3.44422 c 0,0 0.05034,-2.12467 -1.80967,-2.14661 -1.8600071,-0.022 -1.8397101,2.14661 -1.8397101,2.14661 z"
+       id="path72524-64-5"
+       sodipodi:nodetypes="cccczc"
+       inkscape:label="LED10" /><path
+       style="display:inline;fill:#ff3333;fill-opacity:1;stroke:#000000;stroke-width:0.213418px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 31.899217,63.018881 v 2.13964 h 2.267093 v -2.13964 c 0,0 0.03127,-1.3199 -1.124215,-1.33353 -1.155487,-0.0136 -1.142878,1.33353 -1.142878,1.33353 z"
+       id="path72524-386-48"
+       sodipodi:nodetypes="cccczc"
+       inkscape:label="LED09" /><path
+       style="display:inline;fill:#ff3333;fill-opacity:1;stroke:#000000;stroke-width:0.213418px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 8.9119861,64.419151 v 2.13964 h 2.2670929 v -2.13964 c 0,0 0.03127,-1.3199 -1.124215,-1.33353 -1.1554869,-0.0136 -1.1428779,1.33353 -1.1428779,1.33353 z"
+       id="path72524-386-75"
+       sodipodi:nodetypes="cccczc"
+       inkscape:label="LED08" /><path
+       style="display:inline;fill:#ff3333;fill-opacity:1;stroke:#000000;stroke-width:0.213418px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m -17.44795,67.159311 v 2.13964 h 2.267093 v -2.13964 c 0,0 0.03127,-1.3199 -1.124215,-1.33353 -1.155487,-0.0136 -1.142878,1.33353 -1.142878,1.33353 z"
+       id="path72524-386-7"
+       sodipodi:nodetypes="cccczc"
+       inkscape:label="LED07" /><path
+       style="display:inline;fill:#ff3333;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 43.207237,66.861221 v 2.6526 h 2.810604 v -2.6526 c 0,0 0.03877,-1.63633 -1.393734,-1.65323 -1.432502,-0.0169 -1.41687,1.65323 -1.41687,1.65323 z"
+       id="path72524-9"
+       sodipodi:nodetypes="cccczc"
+       inkscape:label="LED06" /><path
+       style="display:inline;fill:#ff3333;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 16.388611,68.660491 v 2.6526 h 2.810604 v -2.6526 c 0,0 0.03877,-1.63633 -1.393734,-1.65323 -1.432502,-0.0169 -1.41687,1.65323 -1.41687,1.65323 z"
+       id="path72524-5"
+       sodipodi:nodetypes="cccczc"
+       inkscape:label="LED05" /><path
+       style="display:inline;fill:#ff3333;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m -14.617463,72.125381 v 2.6526 h 2.810604 v -2.6526 c 0,0 0.03877,-1.63633 -1.393734,-1.65323 -1.432502,-0.0169 -1.41687,1.65323 -1.41687,1.65323 z"
+       id="path72524-7"
+       sodipodi:nodetypes="cccczc"
+       inkscape:label="LED04" /><path
+       style="display:inline;fill:#ff3333;fill-opacity:1;stroke:#000000;stroke-width:0.265;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m 57.762279,71.701681 v 3.44422 h 3.64938 v -3.44422 c 0,0 0.05034,-2.12467 -1.80967,-2.14661 -1.860007,-0.022 -1.83971,2.14661 -1.83971,2.14661 z"
+       id="path72524-64-9"
+       sodipodi:nodetypes="cccczc"
+       inkscape:label="LED03" /><path
+       style="display:inline;fill:#ff3333;fill-opacity:1;stroke:#000000;stroke-width:0.265;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m 28.066354,75.094661 v 3.44422 h 3.649381 v -3.44422 c 0,0 0.05034,-2.12467 -1.809671,-2.14661 -1.860006,-0.022 -1.83971,2.14661 -1.83971,2.14661 z"
+       id="path72524-64-05"
+       sodipodi:nodetypes="cccczc"
+       inkscape:label="LED02" /><path
+       style="display:inline;fill:#ff3333;fill-opacity:1;stroke:#000000;stroke-width:0.265;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m -10.052333,79.216321 v 3.44422 h 3.6493801 v -3.44422 c 0,0 0.05034,-2.12467 -1.80967,-2.14661 -1.8600071,-0.022 -1.8397101,2.14661 -1.8397101,2.14661 z"
+       id="path72524-64-4"
+       sodipodi:nodetypes="cccczc"
+       inkscape:label="LED01" /></g></svg>
+`;
+    var _fetch = window.fetch;
+    window.fetch = function (url) {
+        if (url === 'led-cube-base.svg')
+            return Promise.resolve(new Response(_svg, { status: 200 }));
+        return _fetch.apply(this, arguments);
+    };
+})();
+</script>
+</head>
+<body>
+<header id="page-header">
+    <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICAgd2lkdGg9IjM1MXB4IgogICBoZWlnaHQ9IjY4cHgiCiAgIHZpZXdCb3g9IjAgMCAzNTEgNjgiCiAgIHZlcnNpb249IjEuMSIKICAgaWQ9InN2ZzEiCiAgIHNvZGlwb2RpOmRvY25hbWU9IkxpdmVXaXJlcy13aGl0ZS5zdmciCiAgIGlua3NjYXBlOnZlcnNpb249IjEuNC4yIChlYmYwZTk0MGQwLCAyMDI1LTA1LTA4KSIKICAgeG1sbnM6aW5rc2NhcGU9Imh0dHA6Ly93d3cuaW5rc2NhcGUub3JnL25hbWVzcGFjZXMvaW5rc2NhcGUiCiAgIHhtbG5zOnNvZGlwb2RpPSJodHRwOi8vc29kaXBvZGkuc291cmNlZm9yZ2UubmV0L0RURC9zb2RpcG9kaS0wLmR0ZCIKICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiCiAgIHhtbG5zOmNjPSJodHRwOi8vY3JlYXRpdmVjb21tb25zLm9yZy9ucyMiCiAgIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyI+CiAgPGRlZnMKICAgICBpZD0iZGVmczEiIC8+CiAgPHNvZGlwb2RpOm5hbWVkdmlldwogICAgIGlkPSJuYW1lZHZpZXcxIgogICAgIHBhZ2Vjb2xvcj0iI2ZmZmZmZiIKICAgICBib3JkZXJjb2xvcj0iIzAwMDAwMCIKICAgICBib3JkZXJvcGFjaXR5PSIwLjI1IgogICAgIGlua3NjYXBlOnNob3dwYWdlc2hhZG93PSIyIgogICAgIGlua3NjYXBlOnBhZ2VvcGFjaXR5PSIwLjAiCiAgICAgaW5rc2NhcGU6cGFnZWNoZWNrZXJib2FyZD0iMCIKICAgICBpbmtzY2FwZTpkZXNrY29sb3I9IiNkMWQxZDEiCiAgICAgaW5rc2NhcGU6em9vbT0iMi4zNTI5OTM1IgogICAgIGlua3NjYXBlOmN4PSIyMDIuMDgzMDEiCiAgICAgaW5rc2NhcGU6Y3k9IjE3LjYzNzEwOCIKICAgICBpbmtzY2FwZTp3aW5kb3ctd2lkdGg9IjE5MjAiCiAgICAgaW5rc2NhcGU6d2luZG93LWhlaWdodD0iMTIwMCIKICAgICBpbmtzY2FwZTp3aW5kb3cteD0iMzg0MCIKICAgICBpbmtzY2FwZTp3aW5kb3cteT0iMCIKICAgICBpbmtzY2FwZTp3aW5kb3ctbWF4aW1pemVkPSIxIgogICAgIGlua3NjYXBlOmN1cnJlbnQtbGF5ZXI9IkxvZ28vTGl2ZS1XaXJlcyIgLz4KICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDU4ICg4NDY2MykgLSBodHRwczovL3NrZXRjaC5jb20gLS0+CiAgPHRpdGxlCiAgICAgaWQ9InRpdGxlMSI+TG9nby9MaXZlIFdpcmVzPC90aXRsZT4KICA8ZGVzYwogICAgIGlkPSJkZXNjMSI+Q3JlYXRlZCB3aXRoIFNrZXRjaC48L2Rlc2M+CiAgPGcKICAgICBpZD0iTG9nby9MaXZlLVdpcmVzIgogICAgIHN0cm9rZT0ibm9uZSIKICAgICBzdHJva2Utd2lkdGg9IjEiCiAgICAgZmlsbD0ibm9uZSIKICAgICBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgPHBvbHlnb24KICAgICAgIGlkPSJQYXRoIgogICAgICAgZmlsbD0iIzJCQThEOCIKICAgICAgIHRyYW5zZm9ybT0idHJhbnNsYXRlKDIwLjUwMDAwMCwgMzMuMDAwMDAwKSByb3RhdGUoOTAuMDAwMDAwKSB0cmFuc2xhdGUoLTIwLjUwMDAwMCwgLTMzLjAwMDAwMCkgIgogICAgICAgcG9pbnRzPSIxNi4xMzY5NzEgMTkgNDYgNDIuMjEzMjAxMSAyNS4yODk3NDA0IDM0LjgxNjg3OSAyNS4yODk3NDA0IDQ3IC01IDI2LjA1NTczMjUgMTYuMTM2OTcxIDMyLjI2NDMzMTIiIC8+CiAgICA8cGF0aAogICAgICAgZD0iTTQ2LDcgTDQ5LjYyMzMyNTEsNyBMNDkuNjIzMzI1MSw1OC43NDMzNzUyIEw0Niw1OC43NDMzNzUyIEw0Niw3IFogTTYzLjM3NzE3MTIsMjIuMDc5NDk3OSBMNjMuMzc3MTcxMiw1OC43NDMzNzUyIEw1OS43NTM4NDYyLDU4Ljc0MzM3NTIgTDU5Ljc1Mzg0NjIsMjIuMDc5NDk3OSBMNjMuMzc3MTcxMiwyMi4wNzk0OTc5IFogTTU4LjcxODYxMDQsMTAuMzI2MzU5OCBDNTguNzE4NjEwNCw2LjQ4MjU2NjI1IDY0LjU2MDI5NzgsNi40ODI1NjYyNSA2NC41NjAyOTc4LDEwLjMyNjM1OTggQzY0LjU2MDI5NzgsMTQuMTcwMTUzNCA1OC43MTg2MTA0LDE0LjE3MDE1MzQgNTguNzE4NjEwNCwxMC4zMjYzNTk4IFogTTg1LjU2MDc5NCw1OC43NDMzNzUyIEw3MC4yNTQwOTQzLDIyLjIyNzMzNjEgTDc0LjI0NzE0NjQsMjIuMjI3MzM2MSBMODcuNTU3MzIwMSw1NC41Mjk5ODYxIEwxMDAuODY3NDk0LDIyLjIyNzMzNjEgTDEwNC44NjA1NDYsMjIuMjI3MzM2MSBMODkuNTUzODQ2Miw1OC43NDMzNzUyIEw4NS41NjA3OTQsNTguNzQzMzc1MiBaIE0xMjcuMzM5OTUsNTkuMjYwODA4OSBDMTE3LjA2MTUzOCw1OS4yNjA4MDg5IDEwOC43Nzk2NTMsNTIuMDkwNjU1NSAxMDguNzc5NjUzLDQwLjQ4NTM1NTYgQzEwOC43Nzk2NTMsMjkuNTQ1MzI3OCAxMTcuMDYxNTM4LDIxLjYzNTk4MzMgMTI3LjMzOTk1LDIxLjYzNTk4MzMgQzEzNy42MTgzNjIsMjEuNjM1OTgzMyAxNDYuNzg3NTkzLDI3LjkxOTEwNzQgMTQ1LjM4MjYzLDQyLjE4NTQ5NTEgTDExMi40NzY5MjMsNDIuMTg1NDk1MSBDMTEzLjIxNjM3Nyw1MC43NjAxMTE2IDExOS43OTc1MTksNTUuNzEyNjkxOCAxMjcuMzM5OTUsNTUuNzEyNjkxOCBDMTMyLjE0NjQwMiw1NS43MTI2OTE4IDEzNy43NjYyNTMsNTMuNzkwNzk1IDE0MC41MDIyMzMsNTAuMTY4NzU4NyBMMTQzLjA5MDMyMyw1Mi4yMzg0OTM3IEMxMzkuNTQwOTQzLDU2Ljg5NTM5NzUgMTMzLjE4MTYzOCw1OS4yNjA4MDg5IDEyNy4zMzk5NSw1OS4yNjA4MDg5IFogTTExMi40NzY5MjMsMzkuMDA2OTczNSBMMTQyLjEyOTAzMiwzOS4wMDY5NzM1IEMxNDIuMDU1MDg3LDI5Ljk4ODg0MjQgMTM2LjEzOTQ1NCwyNC45NjIzNDMxIDEyNy4zMzk5NSwyNC45NjIzNDMxIEMxMTkuNzk3NTE5LDI0Ljk2MjM0MzEgMTEzLjI5MDMyMywzMC4wNjI3NjE1IDExMi40NzY5MjMsMzkuMDA2OTczNSBaIE0xNzkuMjQ5NjI4LDIyLjIyNzMzNjEgTDE4Ny4xNjE3ODcsMjIuMjI3MzM2MSBMMTk1LjE0Nzg5MSw0OS42NTEzMjUgTDIwMy41MDM3MjIsMjIuMjI3MzM2MSBMMjEzLjQ4NjM1MiwyMi4yMjczMzYxIEwyMDAuNzY3NzQyLDU4Ljg5MTIxMzQgTDE5MC4yNjc0OTQsNTguODkxMjEzNCBMMTg2LjQ5NjI3OCw0OC4wOTkwMjM3IEwxODMuMjQyNjgsMzUuOTAyMzcxIEwxNzkuOTg5MDgyLDQ4LjA5OTAyMzcgTDE3Ni4yMTc4NjYsNTguODkxMjEzNCBMMTY1LjcxNzYxOCw1OC44OTEyMTM0IEwxNTIuOTI1MDYyLDIyLjIyNzMzNjEgTDE2Mi45ODE2MzgsMjIuMjI3MzM2MSBMMTcxLjMzNzQ2OSw0OS42NTEzMjUgTDE3OS4yNDk2MjgsMjIuMjI3MzM2MSBaIE0yMzAuMTI0MDY5LDIyLjE1MzQxNyBMMjMwLjEyNDA2OSw1OC43NDMzNzUyIEwyMjEuMTAyNzMsNTguNzQzMzc1MiBMMjIxLjEwMjczLDIyLjE1MzQxNyBMMjMwLjEyNDA2OSwyMi4xNTM0MTcgWiBNMjM4LjI1ODA2NSwyMi4zMDEyNTUyIEwyNDYuNjEzODk2LDIyLjMwMTI1NTIgTDI0Ny4yNzk0MDQsMjYuNTE0NjQ0NCBDMjUwLjA4OTMzLDIyLjAwNTU3ODggMjUzLjg2MDU0NiwyMS4zNDAzMDY4IDI1Ny41NTc4MTYsMjEuMzQwMzA2OCBDMjYxLjMyOTAzMiwyMS4zNDAzMDY4IDI2NC45NTIzNTcsMjIuODE4Njg5IDI2Ni45NDg4ODMsMjQuODE0NTA0OSBMMjYyLjg4MTg4NiwzMi42NDk5MzAzIEMyNjEuMDMzMjUxLDMxLjA5NzYyOSAyNTkuMzMyNTA2LDMwLjI4NDUxODggMjU2LjM3NDY5LDMwLjI4NDUxODggQzI1MS42NDIxODQsMzAuMjg0NTE4OCAyNDcuMjc5NDA0LDMyLjc5Nzc2ODUgMjQ3LjI3OTQwNCwzOS41MjQ0MDczIEwyNDcuMjc5NDA0LDU4Ljc0MzM3NTIgTDIzOC4yNTgwNjUsNTguNzQzMzc1MiBMMjM4LjI1ODA2NSwyMi4zMDEyNTUyIFogTTMwNi41MDk2NzcsNDMuNzM3Nzk2NCBMMjc4LjA0MDY5NSw0My43Mzc3OTY0IEMyNzguNjMyMjU4LDQ4LjI0Njg2MTkgMjgyLjU1MTM2NSw1MS40OTkzMDI2IDI4OC45MTA2Nyw1MS40OTkzMDI2IEMyOTIuMjM4MjEzLDUxLjQ5OTMwMjYgMjk2LjYwMDk5Myw1MC4yNDI2Nzc4IDI5OC42NzE0NjQsNDguMDk5MDIzNyBMMzA0LjQzOTIwNiw1My43OTA3OTUgQzMwMC41OTQwNDUsNTcuNzgyNDI2OCAyOTQuMzA4Njg1LDU5LjcwNDMyMzYgMjg4Ljc2Mjc3OSw1OS43MDQzMjM2IEMyNzYuMTkyMDYsNTkuNzA0MzIzNiAyNjguNzIzNTczLDUxLjk0MjgxNzMgMjY4LjcyMzU3Myw0MC4yNjM1OTgzIEMyNjguNzIzNTczLDI5LjE3NTczMjIgMjc2LjI2NjAwNSwyMS4xOTI0Njg2IDI4OC4wOTcyNywyMS4xOTI0Njg2IEMzMDAuMjk4MjYzLDIxLjE5MjQ2ODYgMzA3LjkxNDY0LDI4LjczMjIxNzYgMzA2LjUwOTY3Nyw0My43Mzc3OTY0IFogTTI3OC4xODg1ODYsMzYuMjcxOTY2NSBMMjk3Ljg1ODA2NSwzNi4yNzE5NjY1IEMyOTcuMjY2NTAxLDMxLjU0MTE0MzcgMjkzLjU2OTIzMSwyOS4xNzU3MzIyIDI4OC4zOTMwNTIsMjkuMTc1NzMyMiBDMjgzLjUxMjY1NSwyOS4xNzU3MzIyIDI3OS41MTk2MDMsMzEuNTQxMTQzNyAyNzguMTg4NTg2LDM2LjI3MTk2NjUgWiBNMzQyLjI5OTI1NiwyNi4wNzExMjk3IEwzMzcuMjcwOTY4LDMxLjk4NDY1ODMgQzMzNC42ODI4NzgsMjkuNTQ1MzI3OCAzMzEuNzI1MDYyLDI4LjczMjIxNzYgMzI4LjI0OTYyOCwyOC43MzIyMTc2IEMzMjMuOTYwNzk0LDI4LjczMjIxNzYgMzIxLjU5NDU0MSwzMC4wNjI3NjE1IDMyMS41OTQ1NDEsMzIuMzU0MjUzOCBDMzIxLjU5NDU0MSwzNC43MTk2NjUzIDMyMy43Mzg5NTgsMzYuMDUwMjA5MiAzMjguMzk3NTE5LDM2LjM0NTg4NTYgQzMzNS4yNzQ0NDIsMzYuNzg5NDAwMyAzNDQsMzguMzQxNzAxNSAzNDQsNDguMDI1MTA0NiBDMzQ0LDU0LjQ1NjA2NjkgMzM4Ljc0OTg3Niw2MCAzMjguMzIzNTczLDYwIEMzMjIuNTU1ODMxLDYwIDMxNi43ODgwODksNTkuMDM5MDUxNiAzMTEuNDY0MDIsNTMuNDk1MTE4NSBMMzE1LjkwMDc0NCw0Ny4wNjQxNTYyIEMzMTguNDg4ODM0LDQ5Ljk0NzAwMTQgMzI0LjQwNDQ2Nyw1Mi4wOTA2NTU1IDMyOC40NzE0NjQsNTIuMTY0NTc0NiBDMzMxLjg3Mjk1Myw1Mi4yMzg0OTM3IDMzNS4wNTI2MDUsNTAuNDY0NDM1MSAzMzUuMDUyNjA1LDQ3LjgwMzM0NzMgQzMzNS4wNTI2MDUsNDUuMjkwMDk3NiAzMzIuOTgyMTM0LDQ0LjI1NTIzMDEgMzI3LjgwNTk1NSw0My45NTk1NTM3IEMzMjAuOTI5MDMyLDQzLjQ0MjExOTkgMzEyLjcyMTA5Miw0MC45Mjg4NzAzIDMxMi43MjEwOTIsMzIuNjQ5OTMwMyBDMzEyLjcyMTA5MiwyNC4yMjMxNTIgMzIxLjQ0NjY1LDIxLjI2NjM4NzcgMzI4LjEwMTczNywyMS4yNjYzODc3IEMzMzMuNzk1NTMzLDIxLjI2NjM4NzcgMzM4LjA4NDM2NywyMi4zNzUxNzQzIDM0Mi4yOTkyNTYsMjYuMDcxMTI5NyBaIgogICAgICAgaWQ9ImxpdmV3aXJlcyIKICAgICAgIGZpbGw9IiMwQjJDMzUiCiAgICAgICBzdHlsZT0iZmlsbDojZWNlY2VjIiAvPgogICAgPGcKICAgICAgIGlkPSJHcm91cC0zIgogICAgICAgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjE3LjAwMDAwMCwgNC4wMDAwMDApIj4KICAgICAgPHBhdGgKICAgICAgICAgZD0iTTIuNDIxMjgwOTIsNi40NTkwOTA5MSBDMi41MzY1ODAwMSw2LjQ1OTA5MDkxIDIuNjEzNDQ2MDcsNi41MzMzMzMzNCAyLjYxMzQ0NjA3LDYuNjQ0Njk2OTcgQzIuNjEzNDQ2MDcsOS42NTE1MTUxNiA1LjE4ODQ1OTExLDEyLjEwMTUxNTIgOC4zMDE1MzQ1OCwxMi4xMDE1MTUyIEMxMS40MTQ2MSwxMi4xMDE1MTUyIDEzLjk1MTE5MDEsOS42NTE1MTUxNiAxMy45NTExOTAxLDYuNjQ0Njk2OTcgQzEzLjk1MTE5MDEsNi41MzMzMzMzNCAxNC4wMjgwNTYyLDYuNDU5MDkwOTEgMTQuMTQzMzU1Miw2LjQ1OTA5MDkxIEwxNC4xNDMzNTUyLDYuNDU5MDkwOTEgTDE2LjM3MjQ3MSw2LjQ1OTA5MDkxIEMxNi40ODc3NzAxLDYuNDU5MDkwOTEgMTYuNTY0NjM2Miw2LjUzMzMzMzM0IDE2LjYwMzA2OTIsNi42NDQ2OTY5NyBDMTYuNjAzMDY5MiwxMS4wNjIxMjEyIDEyLjg3NTA2NTIsMTQuNjYyODc4OCA4LjMwMTUzNDU4LDE0LjY2Mjg3ODggQzMuNzI4MDAzOTUsMTQuNjYyODc4OCAtMS4yNDM0NDk3OWUtMTQsMTEuMDYyMTIxMiAtMS4yNDM0NDk3OWUtMTQsNi42NDQ2OTY5NyBDLTEuMjQzNDQ5NzllLTE0LDYuNTMzMzMzMzQgMC4wNzY4NjYwNjA5LDYuNDU5MDkwOTEgMC4xOTIxNjUxNTMsNi40NTkwOTA5MSBMMC4xOTIxNjUxNTMsNi40NTkwOTA5MSBaIE05LjkxNTcyMTg1LDAuMjIyNzI3MjczIEM5Ljk5MjU4NzkyLDAuMTg1NjA2MDYxIDEwLjA2OTQ1NCwwLjE4NTYwNjA2MSAxMC4xNDYzMiwwLjI1OTg0ODQ4NCBDMTAuMTg0NzUzMSwwLjI5Njk2OTY5NyAxMC4yMjMxODYxLDAuNDA4MzMzMzM0IDEwLjE0NjMyLDAuNDgyNTc1NzU3IEM5LjI2MjM2MDMzLDEuNTIxOTY5NyA5Ljk5MjU4NzkyLDIuNDUgMTAuODc2NTQ3NiwzLjYzNzg3ODc5IEwxMC44NzY1NDc2LDMuNjM3ODc4NzkgTDEwLjkxNDk4MDcsMy42NzUgQzExLjU2ODM0MjEsNC41NjU5MDkwOSAxMi4zNzU0MzU4LDUuNjQyNDI0MjUgMTIuNDEzODY4OSw2Ljc5MzE4MTgyIEwxMi40MTM4Njg5LDYuNzkzMTgxODIgTDEyLjQxMzg2ODksNi44Njc0MjQyNSBDMTIuNDEzODY4OSw4LjEyOTU0NTQ1IDExLjc2MDUwNzMsOS4zMTc0MjQyNSAxMC42NDU5NDk0LDEwLjA1OTg0ODUgTDEwLjY0NTk0OTQsMTAuMDU5ODQ4NSBMMTAuNjA3NTE2NCwxMC4wOTY5Njk3IEMxMC41NjkwODM0LDEwLjA5Njk2OTcgMTAuNTY5MDgzNCwxMC4xMzQwOTA5IDEwLjUzMDY1MDMsMTAuMTM0MDkwOSBMMTAuNTMwNjUwMywxMC4xMzQwOTA5IEwxMC40OTIyMTczLDEwLjE3MTIxMjEgQzkuODM4ODU1NzksMTAuNTQyNDI0MiA5LjA3MDE5NTE5LDEwLjc2NTE1MTUgOC4zMDE1MzQ1OCwxMC43NjUxNTE1IEM4LjE4NjIzNTQ4LDEwLjc2NTE1MTUgOC4wMzI1MDMzNywxMC43MjgwMzAzIDcuODc4NzcxMjQsMTAuNzI4MDMwMyBDNS43NjQ5NTQ1NywxMC41NDI0MjQyIDQuMTg5MjAwMzEsOC44MzQ4NDg0OCA0LjE4OTIwMDMxLDYuODMwMzAzMDMgTDQuMTg5MjAwMzEsNi44MzAzMDMwMyBMNC4xODkyMDAzMSw2Ljc1NjA2MDYxIEM0LjIyNzYzMzM1LDUuNDE5Njk2OTcgNC42ODg4Mjk3Miw0LjU2NTkwOTA5IDUuMTExNTkzMDUsNC4wODMzMzMzNCBDNS41MzQzNTYzOCwzLjU2MzYzNjM2IDUuOTk1NTUyNzUsMy4zNzgwMzAzIDYuMDMzOTg1NzgsMy4zNDA5MDkwOSBDNi4xMTA4NTE4NCwzLjM0MDkwOTA5IDYuMTg3NzE3OTEsMy4zNDA5MDkwOSA2LjIyNjE1MDkzLDMuMzc4MDMwMyBDNi4zMDMwMTcsMy40MTUxNTE1MiA2LjMwMzAxNywzLjQ4OTM5Mzk0IDYuMzAzMDE3LDMuNTYzNjM2MzYgQzYuMTQ5Mjg0ODcsNC40NTQ1NDU0NSA2LjQ5NTE4MjE0LDQuOTc0MjQyNDMgNi44MDI2NDYzOSw1LjIzNDA5MDkxIEM2LjY0ODkxNDI3LDMuNjc1IDcuNDU2MDA3OTEsMi40NSA4LjE0NzgwMjQ2LDEuNjcwNDU0NTUgQzguOTkzMzI5MTIsMC43NDI0MjQyNDMgOS45MTU3MjE4NSwwLjIyMjcyNzI3MyA5LjkxNTcyMTg1LDAuMjIyNzI3MjczIFoiCiAgICAgICAgIGlkPSJTVS1Mb2dvIgogICAgICAgICBmaWxsPSIjMkNBOEQ3IgogICAgICAgICBmaWxsLXJ1bGU9Im5vbnplcm8iIC8+CiAgICA8L2c+CiAgPC9nPgogIDxtZXRhZGF0YQogICAgIGlkPSJtZXRhZGF0YTEiPgogICAgPHJkZjpSREY+CiAgICAgIDxjYzpXb3JrCiAgICAgICAgIHJkZjphYm91dD0iIj4KICAgICAgICA8ZGM6dGl0bGU+TG9nby9MaXZlIFdpcmVzPC9kYzp0aXRsZT4KICAgICAgPC9jYzpXb3JrPgogICAgPC9yZGY6UkRGPgogIDwvbWV0YWRhdGE+Cjwvc3ZnPgo=" alt="LiveWires" id="lw-logo">
+    <div id="header-divider"></div>
+    <span id="page-title">LiveWires LED Cube Animator</span>
+    <a id="header-github" href="https://github.com/livewires/electronics" target="_blank" rel="noopener">GitHub</a>
+</header>
+<div id="app">
+
+    <!-- ── Sidebar ────────────────────────────────────────────── -->
+    <div id="sidebar">
+        <div class="section-title">Animations</div>
+        <div id="animation-list"></div>
+
+        <hr class="divider">
+        <div class="btn-row">
+            <button onclick="addAnimation()">+ Add</button>
+            <button class="danger" onclick="removeAnimation()">− Del</button>
+        </div>
+        <div class="btn-row">
+            <button onclick="moveAnimation(-1)">↑ Up</button>
+            <button onclick="moveAnimation(1)">↓ Down</button>
+        </div>
+
+        <hr class="divider">
+        <button onclick="downloadJSON()">⬇ Download JSON</button>
+        <button onclick="copyJSON(this)">⧉ Copy JSON</button>
+        <label class="file-btn">
+            ⬆ Load JSON
+            <input type="file" accept=".json" style="display:none" onchange="loadJSON(event)">
+        </label>
+
+        <hr class="divider">
+        <button onclick="openHelp()">? Help</button>
+    </div>
+
+    <!-- ── Help modal ────────────────────────────────────────── -->
+    <div id="help-overlay" onclick="closeHelpOnOverlay(event)">
+        <div id="help-box">
+            <h2>Deploying to the LED Cube</h2>
+            <p>
+                Plug the LED cube in to the computer
+            </p>
+            <p>
+                Download <code>animations.json</code> to the <code>CIRCUITPY</code> drive
+                that appears.
+            </p>
+            <p>
+                Eject the drive safely, then unplug and replug the cube to run the new animations.
+            </p>
+            <button class="close-btn" onclick="closeHelp()">Close</button>
+        </div>
+    </div>
+
+    <!-- ── Main ───────────────────────────────────────────────── -->
+    <div id="main">
+
+        <div id="controls-bar">
+            <div class="ctrl-group">
+                <label>Name</label>
+                <input type="text" id="anim-name" value="" oninput="updateAnimationName(this.value)">
+            </div>
+            <div class="ctrl-group">
+                <label>FPS</label>
+                <input type="number" id="anim-fps" value="8" min="1" max="15" oninput="updateFramerate(this.value)">
+            </div>
+        </div>
+
+        <div id="svg-container">Loading SVG…</div>
+
+        <div id="group-bar">
+            <div class="group-set">
+                <span class="group-set-label">Layer</span>
+                <button onclick="toggleGroup('layer',0)">Bottom</button>
+                <button onclick="toggleGroup('layer',1)">Middle</button>
+                <button onclick="toggleGroup('layer',2)">Top</button>
+            </div>
+            <div class="group-divider"></div>
+            <div class="group-set">
+                <span class="group-set-label">Col</span>
+                <button onclick="toggleGroup('col',0)">Left</button>
+                <button onclick="toggleGroup('col',1)">Center</button>
+                <button onclick="toggleGroup('col',2)">Right</button>
+            </div>
+            <div class="group-divider"></div>
+            <div class="group-set">
+                <span class="group-set-label">Row</span>
+                <button onclick="toggleGroup('row',0)">Back</button>
+                <button onclick="toggleGroup('row',1)">Mid</button>
+                <button onclick="toggleGroup('row',2)">Front</button>
+            </div>
+        </div>
+
+        <div id="timeline">
+            <div id="timeline-controls">
+                <button onclick="goToFirstFrame()" title="First">⏮</button>
+                <button onclick="stepFrame(-1)"    title="Prev">◀</button>
+                <button id="play-btn" class="primary" onclick="togglePlay()">▶ Play</button>
+                <button onclick="stepFrame(1)"     title="Next">▶</button>
+                <button onclick="goToLastFrame()"  title="Last">⏭</button>
+                <div class="spacer"></div>
+                <button onclick="moveFrame(-1)" title="Move frame left">← Move</button>
+                <button onclick="moveFrame(1)"  title="Move frame right">Move →</button>
+                <button onclick="addFrameAfter()">+ Frame</button>
+                <button onclick="duplicateFrame()">⧉ Dup</button>
+                <button class="danger" onclick="clearFrame()">✕ Clear</button>
+                <button class="danger" onclick="removeFrame()">− Frame</button>
+            </div>
+            <div id="frames-strip"></div>
+        </div>
+
+        <div id="io-bar">
+            <!-- Intentionally empty — IO moved to sidebar -->
+        </div>
+
+    </div>
+</div>
+
+<script>
+// ============================================================
+// State
+// ============================================================
+
+let animations    = [newAnimation('New Animation')];
+let currentAnimIdx  = 0;
+let currentFrameIdx = 0;
+let isPlaying  = false;
+let playTimer  = null;
+let dragSrcIdx = null;
+
+const ledElements = {};  // ledNumber (1-27) -> SVG path element
+
+function openHelp()  { document.getElementById('help-overlay').classList.add('open'); }
+function closeHelp() { document.getElementById('help-overlay').classList.remove('open'); }
+function closeHelpOnOverlay(e) { if (e.target === e.currentTarget) closeHelp(); }
+
+function newAnimation(name) {
+    return { name, framerate: 8, frames: [0] };
+}
+
+function curAnim() { return animations[currentAnimIdx]; }
+
+// ============================================================
+// SVG Loading
+// ============================================================
+
+async function loadSVG() {
+    const res  = await fetch('led-cube-base.svg');
+    const text = await res.text();
+
+    const container = document.getElementById('svg-container');
+    container.innerHTML = text;
+
+    const svg = container.querySelector('svg');
+    svg.style.cssText = 'width:auto;height:100%;max-width:100%;max-height:100%';
+
+    // Remove fixed mm dimensions so it scales freely
+    svg.removeAttribute('width');
+    svg.removeAttribute('height');
+
+    svg.querySelectorAll('path').forEach(el => {
+        const label = el.getAttribute('inkscape:label') ||
+                      el.getAttributeNS('http://www.inkscape.org/namespaces/inkscape', 'label');
+        if (!label) return;
+        const m = label.match(/^LED(\d{1,2})$/);
+        if (!m) return;
+
+        const n = parseInt(m[1], 10);
+        ledElements[n] = el;
+        el.style.cursor = 'pointer';
+
+        el.addEventListener('click', () => toggleLED(n));
+        el.addEventListener('mouseenter', () => {
+            const fv = (curAnim().frames[currentFrameIdx]) >>> 0;
+            el.style.fill = ledOn(fv, n) ? '#ffaa00' : '#441100';
+        });
+        el.addEventListener('mouseleave', () => {
+            const fv = (curAnim().frames[currentFrameIdx]) >>> 0;
+            el.style.fill = ledOn(fv, n) ? '#ff3333' : '#3d0808';
+        });
+    });
+
+    updateLEDDisplay();
+}
+
+// ============================================================
+// LED helpers
+// ============================================================
+
+function ledOn(fv, n)    { return (fv & (1 << (n - 1))) !== 0; }
+function ledSet(fv, n)   { return fv |  (1 << (n - 1)); }
+function ledClear(fv, n) { return fv & ~(1 << (n - 1)); }
+
+function toggleLED(n) {
+    const anim = curAnim();
+    const fv = anim.frames[currentFrameIdx];
+    anim.frames[currentFrameIdx] = ledOn(fv, n) ? ledClear(fv, n) : ledSet(fv, n);
+    updateLEDDisplay();
+    updateTimeline();
+}
+
+// ============================================================
+// LED group definitions
+// layer = (n-1)//9   (0=bottom, 1=mid, 2=top)
+// col   = (n-1)%3    (0=left,   1=center, 2=right)
+// row   = ((n-1)%9)//3  (0=back, 1=mid, 2=front)
+// ============================================================
+
+const LED_GROUPS = {
+    layer: [[], [], []],
+    col:   [[], [], []],
+    row:   [[], [], []],
+};
+for (let n = 1; n <= 27; n++) {
+    const p = n - 1;
+    LED_GROUPS.layer[Math.floor(p / 9)].push(n);
+    LED_GROUPS.col[p % 3].push(n);
+    LED_GROUPS.row[Math.floor((p % 9) / 3)].push(n);
+}
+
+function toggleGroup(axis, idx) {
+    const leds = LED_GROUPS[axis][idx];
+    const anim = curAnim();
+    let fv = anim.frames[currentFrameIdx];
+    const allOn = leds.every(n => ledOn(fv, n));
+    for (const n of leds) fv = allOn ? ledClear(fv, n) : ledSet(fv, n);
+    anim.frames[currentFrameIdx] = fv;
+    updateLEDDisplay();
+    updateTimeline();
+}
+
+function updateLEDDisplay() {
+    const fv = (curAnim().frames[currentFrameIdx]) >>> 0;
+    for (let n = 1; n <= 27; n++) {
+        const el = ledElements[n];
+        if (!el) continue;
+        const on = ledOn(fv, n);
+        el.style.fill   = on ? '#ff3333' : '#3d0808';
+        el.style.filter = on ? 'drop-shadow(0 0 3px #ff6666)' : 'none';
+    }
+}
+
+// ============================================================
+// Animation list
+// ============================================================
+
+function renderAnimationList() {
+    const list = document.getElementById('animation-list');
+    list.innerHTML = '';
+    animations.forEach((anim, idx) => {
+        const div = document.createElement('div');
+        div.className = 'animation-item' + (idx === currentAnimIdx ? ' active' : '');
+        div.textContent = anim.name || '(unnamed)';
+        div.title = anim.name;
+        div.onclick = () => selectAnimation(idx);
+        list.appendChild(div);
+    });
+}
+
+function selectAnimation(idx) {
+    stopPlay();
+    currentAnimIdx  = idx;
+    currentFrameIdx = 0;
+    const anim = curAnim();
+    document.getElementById('anim-name').value = anim.name;
+    document.getElementById('anim-fps').value  = anim.framerate;
+    renderAnimationList();
+    updateTimeline();
+    updateLEDDisplay();
+}
+
+function addAnimation() {
+    animations.push(newAnimation('Animation ' + (animations.length + 1)));
+    selectAnimation(animations.length - 1);
+}
+
+function removeAnimation() {
+    if (animations.length <= 1) return;
+    animations.splice(currentAnimIdx, 1);
+    currentAnimIdx = Math.min(currentAnimIdx, animations.length - 1);
+    selectAnimation(currentAnimIdx);
+}
+
+function moveAnimation(dir) {
+    const target = currentAnimIdx + dir;
+    if (target < 0 || target >= animations.length) return;
+    [animations[currentAnimIdx], animations[target]] =
+    [animations[target], animations[currentAnimIdx]];
+    currentAnimIdx = target;
+    renderAnimationList();
+}
+
+function updateAnimationName(name) {
+    curAnim().name = name;
+    renderAnimationList();
+}
+
+function updateFramerate(val) {
+    const fps = Math.max(1, Math.min(15, parseInt(val) || 1));
+    curAnim().framerate = fps;
+    if (isPlaying) { stopPlay(); startPlay(); }
+}
+
+// ============================================================
+// Timeline
+// ============================================================
+
+function updateTimeline() {
+    const anim  = curAnim();
+    const strip = document.getElementById('frames-strip');
+    strip.innerHTML = '';
+
+    anim.frames.forEach((fv, idx) => {
+        const box = document.createElement('div');
+        box.className = 'frame-box' + (idx === currentFrameIdx ? ' active' : '');
+
+        const num = document.createElement('div');
+        num.className   = 'frame-num';
+        num.textContent = idx + 1;
+
+        const hex = document.createElement('div');
+        hex.className   = 'frame-hex';
+        hex.textContent = '0x' + (fv >>> 0).toString(16).toUpperCase().padStart(7, '0');
+
+        box.appendChild(num);
+        box.appendChild(makeMiniPreview(fv));
+        box.appendChild(hex);
+
+        box.onclick = () => selectFrame(idx);
+
+        // Drag-and-drop reordering
+        box.setAttribute('draggable', 'true');
+        box.addEventListener('dragstart', e => {
+            dragSrcIdx = idx;
+            e.dataTransfer.effectAllowed = 'move';
+            // Defer adding the class so the drag image is captured first
+            requestAnimationFrame(() => box.classList.add('dragging'));
+        });
+        box.addEventListener('dragend', () => {
+            dragSrcIdx = null;
+            strip.querySelectorAll('.frame-box').forEach(b =>
+                b.classList.remove('dragging', 'drag-over'));
+        });
+        box.addEventListener('dragover', e => {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+            if (dragSrcIdx !== null && dragSrcIdx !== idx) {
+                strip.querySelectorAll('.frame-box').forEach(b => b.classList.remove('drag-over'));
+                box.classList.add('drag-over');
+            }
+        });
+        box.addEventListener('dragleave', () => box.classList.remove('drag-over'));
+        box.addEventListener('drop', e => {
+            e.preventDefault();
+            if (dragSrcIdx === null || dragSrcIdx === idx) return;
+            const anim = curAnim();
+            const [moved] = anim.frames.splice(dragSrcIdx, 1);
+            anim.frames.splice(idx, 0, moved);
+            currentFrameIdx = idx;
+            dragSrcIdx = null;
+            updateTimeline();
+            updateLEDDisplay();
+        });
+
+        strip.appendChild(box);
+    });
+
+    const active = strip.querySelector('.frame-box.active');
+    if (active) active.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+}
+
+function makeMiniPreview(fv) {
+    // 9 columns × 3 rows: row 0 = LEDs 1-9, row 1 = LEDs 10-18, row 2 = LEDs 19-27
+    const NS = 'http://www.w3.org/2000/svg';
+    const svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('width',   '45');
+    svg.setAttribute('height',  '15');
+    svg.setAttribute('viewBox', '0 0 45 15');
+
+    for (let i = 0; i < 27; i++) {
+        const on   = (fv & (1 << i)) !== 0;
+        const rect = document.createElementNS(NS, 'rect');
+        rect.setAttribute('x',      (i % 9) * 5 + 1);
+        rect.setAttribute('y',      Math.floor(i / 9) * 5 + 1);
+        rect.setAttribute('width',  '3');
+        rect.setAttribute('height', '3');
+        rect.setAttribute('rx',     '1');
+        rect.setAttribute('fill',   on ? '#ff3333' : '#3d0808');
+        svg.appendChild(rect);
+    }
+    return svg;
+}
+
+function selectFrame(idx) {
+    currentFrameIdx = idx;
+    updateTimeline();
+    updateLEDDisplay();
+}
+
+// ============================================================
+// Frame operations
+// ============================================================
+
+function addFrameAfter() {
+    curAnim().frames.splice(currentFrameIdx + 1, 0, 0);
+    selectFrame(currentFrameIdx + 1);
+}
+
+function duplicateFrame() {
+    const v = curAnim().frames[currentFrameIdx];
+    curAnim().frames.splice(currentFrameIdx + 1, 0, v);
+    selectFrame(currentFrameIdx + 1);
+}
+
+function clearFrame() {
+    curAnim().frames[currentFrameIdx] = 0;
+    updateLEDDisplay();
+    updateTimeline();
+}
+
+function removeFrame() {
+    const anim = curAnim();
+    if (anim.frames.length <= 1) return;
+    anim.frames.splice(currentFrameIdx, 1);
+    selectFrame(Math.min(currentFrameIdx, anim.frames.length - 1));
+}
+
+function moveFrame(dir) {
+    const anim = curAnim();
+    const target = currentFrameIdx + dir;
+    if (target < 0 || target >= anim.frames.length) return;
+    [anim.frames[currentFrameIdx], anim.frames[target]] =
+    [anim.frames[target], anim.frames[currentFrameIdx]];
+    currentFrameIdx = target;
+    updateTimeline();
+}
+
+// ============================================================
+// Playback
+// ============================================================
+
+function togglePlay() { isPlaying ? stopPlay() : startPlay(); }
+
+function startPlay() {
+    isPlaying = true;
+    const btn = document.getElementById('play-btn');
+    btn.textContent = '⏸ Pause';
+    btn.classList.remove('primary');
+
+    const fps = curAnim().framerate;
+    playTimer = setInterval(() => {
+        currentFrameIdx = (currentFrameIdx + 1) % curAnim().frames.length;
+        updateTimeline();
+        updateLEDDisplay();
+    }, 1000 / fps);
+}
+
+function stopPlay() {
+    isPlaying = false;
+    clearInterval(playTimer);
+    playTimer = null;
+    const btn = document.getElementById('play-btn');
+    if (btn) { btn.textContent = '▶ Play'; btn.classList.add('primary'); }
+}
+
+function stepFrame(dir) {
+    stopPlay();
+    const len = curAnim().frames.length;
+    currentFrameIdx = ((currentFrameIdx + dir) % len + len) % len;
+    updateTimeline();
+    updateLEDDisplay();
+}
+
+function goToFirstFrame() { stopPlay(); selectFrame(0); }
+function goToLastFrame()  { stopPlay(); selectFrame(curAnim().frames.length - 1); }
+
+// ============================================================
+// Keyboard shortcuts
+// ============================================================
+
+document.addEventListener('keydown', e => {
+    if (e.target.tagName === 'INPUT') return;
+    if (e.key === ' ')           { e.preventDefault(); togglePlay(); }
+    if (e.key === 'ArrowLeft')   { e.preventDefault(); stepFrame(-1); }
+    if (e.key === 'ArrowRight')  { e.preventDefault(); stepFrame(1);  }
+    if (e.key === 'Delete' || e.key === 'Backspace') removeFrame();
+});
+
+// ============================================================
+// Import / Export
+// ============================================================
+
+// The file format has LED1 as the MSB (bit 26) and LED27 as LSB (bit 0),
+// which is the reverse of the internal representation (LED1 = bit 0).
+function reverseBits27(v) {
+    let r = 0;
+    for (let i = 0; i < 27; i++) if (v & (1 << i)) r |= (1 << (26 - i));
+    return r >>> 0;
+}
+
+async function downloadJSON() {
+    const data = animations.map(a => ({
+        name:      a.name,
+        frames:    a.frames.map(f => reverseBits27(f)),
+        framerate: a.framerate
+    }));
+    const json = JSON.stringify(data, null, 4);
+
+    if (window.showSaveFilePicker) {
+        try {
+            const handle = await window.showSaveFilePicker({
+                suggestedName: 'animations.json',
+                types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }],
+            });
+            const writable = await handle.createWritable();
+            await writable.write(json);
+            await writable.close();
+        } catch (e) {
+            if (e.name !== 'AbortError') throw e;
+        }
+    } else {
+        // Fallback for Firefox / Safari
+        const blob = new Blob([json], { type: 'application/json' });
+        const url  = URL.createObjectURL(blob);
+        const a    = Object.assign(document.createElement('a'), { href: url, download: 'animations.json' });
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+}
+
+function copyJSON(btn) {
+    const data = animations.map(a => ({
+        name:      a.name,
+        frames:    a.frames.map(f => reverseBits27(f)),
+        framerate: a.framerate
+    }));
+    navigator.clipboard.writeText(JSON.stringify(data, null, 4)).then(() => {
+        const orig = btn.textContent;
+        btn.textContent = '✓ Copied!';
+        setTimeout(() => { btn.textContent = orig; }, 1500);
+    });
+}
+
+function loadJSON(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+        try {
+            const data = JSON.parse(e.target.result);
+            if (!Array.isArray(data)) throw new Error('Expected a JSON array');
+            animations = data.map(a => ({
+                name:      String(a.name || 'Unnamed'),
+                framerate: Math.max(1, Math.min(15, parseInt(a.framerate) || 8)),
+                frames:    Array.isArray(a.frames) ? a.frames.map(f => reverseBits27(f >>> 0)) : [0]
+            }));
+            if (!animations.length) animations = [newAnimation('New Animation')];
+            stopPlay();
+            currentAnimIdx  = 0;
+            currentFrameIdx = 0;
+            selectAnimation(0);
+        } catch (err) {
+            alert('Failed to load JSON: ' + err.message);
+        }
+    };
+    reader.readAsText(file);
+    event.target.value = '';
+}
+
+// ============================================================
+// Init
+// ============================================================
+
+loadSVG()
+    .then(() => {
+        renderAnimationList();
+        updateTimeline();
+        updateLEDDisplay();
+    })
+    .catch(err => {
+        document.getElementById('svg-container').textContent =
+            'Error loading SVG: ' + err.message +
+            ' (serve this page over HTTP, not file://)';
+    });
+</script>
+</body>
+</html>
