@@ -268,16 +268,41 @@ header .logo svg {
 }
 
 .hero {
-  background: linear-gradient(150deg, #0b2c35 0%, #0d4a65 55%, #1880a5 100%);
+  background:
+    radial-gradient(ellipse at 20% 60%, rgba(24, 128, 165, 0.45) 0%, transparent 55%),
+    radial-gradient(circle, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(150deg, #0b2c35 0%, #0d4a65 55%, #1880a5 100%);
+  background-size: 100% 100%, 28px 28px, 100% 100%;
   color: #dcf0fe;
   padding: 2rem 0.75rem 2rem;
   margin: 0 -0.75rem 1rem;
   border-radius: 0 0 1.5rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  right: -2rem;
+  bottom: -2rem;
+  width: 14rem;
+  height: 14rem;
+  background-image: url("data:image/svg+xml,%3Csvg width='128' height='128' viewBox='0 0 128 128' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M96 52l-48 72 12-48H32L80 4 68 52z' fill='white' fill-rule='nonzero'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.06;
+  pointer-events: none;
+  transform: rotate(10deg);
+  animation: hero-bolt 7s ease-in-out infinite;
+}
+@keyframes hero-bolt {
+  0%, 100% { opacity: 0.06; transform: rotate(10deg) scale(1); }
+  50% { opacity: 0.11; transform: rotate(10deg) scale(1.08); }
 }
 .hero h1 {
   color: #fff;
   font-size: 2.5rem;
-  border-bottom-color: rgba(255, 255, 255, 0.2);
+  border-bottom: none;
   margin-top: 0;
 }
 .hero li:before {
@@ -393,11 +418,11 @@ header .logo svg {
     padding-right: 1.5rem;
   }
   .hero {
-    padding: 2.5rem 1.5rem 2.5rem;
+    padding: 2.5rem 1.5rem 1rem;
     margin: 0 -1.5rem 1rem;
   }
   .hero h1 {
-    font-size: 3rem;
+    font-size: 3.5rem;
   }
   body {
     margin: 0 auto;
