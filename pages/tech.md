@@ -178,7 +178,7 @@ Record music, produce a podcast, add sound effects, mix tracks and experiment wi
 </div>
 
 <div class="columns columns-reverse">
-<img src="/assets/photo/2022/video.jpg">
+<img src="/assets/photo/video.jpg">
 <div>
 
 ## Video Production <a id="video"></a>
