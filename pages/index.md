@@ -13,18 +13,19 @@ og_description: "Start your summer with a week learning about Jesus and technolo
 Spend a week building tech, making friends and exploring life's big questions
 
 * For ages 12 to 17
-* 9th - 16th August 2026
-* Salisbury, UK
+* 8th - 15th August 2026
+* Surrey, UK
 
+<!-- TODO UPDATE THIS LINK -->
 <a class="cta" href="https://events.scriptureunion.org.uk/event.php?id=1225" target="blank" rel="noopener" id="book-now">Book now!</a>
 
 </div>
 
 ## Create, connect and explore
 
-LiveWires is a week-long residential camp for 12–17s where technology, community and Christian faith come together. You’ll spend the week building techy projects — coding, electronics, music production, video and more — using tools and techniques professionals actually use. 
+LiveWires is a week-long residential camp for 12–17s where technology, community and Christian faith come together. You’ll spend the week building techy projects — coding, electronics, music production, video and more — using tools and techniques professionals actually use.
 
-There’s space to form genuine lifelong friendships, take on ridiculous challenges, and explore life’s bigger questions alongside people who take faith seriously. No experience required. Most people arrive alone and leave already planning how to come back.
+There’s space to form genuine lifelong friendships, take on ridiculous challenges, and explore life’s bigger questions alongside people who take faith seriously.
 
 <div class="columns columns-reverse">
 <img src="/assets/photo/2022/electronics.jpg">
@@ -101,13 +102,13 @@ We'll teach you everything you need, and you'll come away with something cool to
 
 # Where is it?
 
-LiveWires takes place at a boarding school in Salisbury, where we turn classrooms, workshops and dorms into a temporary home for a week of building projects, making friends and exploring faith together.
+LiveWires takes place at a boarding school in Surrey, where we turn classrooms, workshops and dorms into a temporary home for a week of building projects, making friends and exploring faith together.
 
-Young people sleep in dorms, usually with 4 to 6 people per room, and all activities are run by our trained volunteer team. Friends are made quickly and can last long after the camp is over.
+Young people sleep in dorms, usually with 4 to 10 people per room, and all activities are run by our trained volunteer team. Friends are made quickly and can last long after the camp is over.
 
 Technical activities happen in classrooms and workshop spaces throughout the site, while larger events take place in the school hall and dining hall. There’s also plenty of space to relax, play games, chat with friends or escape from debugging for a while.
 
-The site is easy to reach by car, and we can also arrange collection from Salisbury train or coach stations. Arrival time is late afternoon, but if you get there early Salisbury city centre has plenty to explore.
+The site is easy to reach by car, and we can also arrange collection from Godalming train station at the appropriate time.
 
 # Meet the team
 
@@ -155,10 +156,11 @@ He lives in Birmingham with his wife Rosie. When he is not at a computer, he spe
 
 # How to book <a id="book"></a>
 
-LiveWires bookings are managed by [Scripture Union](https://events.scriptureunion.org.uk/). SU have been running summer holidays for over a hundred years, and LiveWires has been around since the 80s! 
+LiveWires bookings are managed by [Scripture Union](https://events.scriptureunion.org.uk/). SU have been running summer holidays for over a hundred years, and LiveWires has been around since the 80s!
 
+<!-- TODO UPDATE THIS LINK -->
 <a class="cta" href="https://events.scriptureunion.org.uk/event.php?id=1225" target="blank" rel="noopener" id="book-now">Book here</a>
 
-Quesitons? We'd love to help! Email the team at <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#108;&#105;&#118;&#101;&#119;&#105;&#114;&#101;&#115;&#64;&#115;&#99;&#114;&#105;&#112;&#116;&#117;&#114;&#101;&#117;&#110;&#105;&#111;&#110;&#46;&#111;&#114;&#103;&#46;&#117;&#107;">&#108;&#105;&#118;&#101;&#119;&#105;&#114;&#101;&#115;&#64;&#115;&#99;&#114;&#105;&#112;&#116;&#117;&#114;&#101;&#117;&#110;&#105;&#111;&#110;&#46;&#111;&#114;&#103;&#46;&#117;&#107;</a>,
+Questions? We'd love to help! Email the team at <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#108;&#105;&#118;&#101;&#119;&#105;&#114;&#101;&#115;&#64;&#115;&#99;&#114;&#105;&#112;&#116;&#117;&#114;&#101;&#117;&#110;&#105;&#111;&#110;&#46;&#111;&#114;&#103;&#46;&#117;&#107;">&#108;&#105;&#118;&#101;&#119;&#105;&#114;&#101;&#115;&#64;&#115;&#99;&#114;&#105;&#112;&#116;&#117;&#114;&#101;&#117;&#110;&#105;&#111;&#110;&#46;&#111;&#114;&#103;&#46;&#117;&#107;</a>,
 or give them a call on [020 3397 1111](tel:02033971111).
 
